@@ -12,10 +12,11 @@ import java.awt.Image;
 
 public class GamePanel extends JPanel {
     private Image backGround;
-    private LoadMap load;
+    private Game game;
 
-    public GamePanel(LoadMap load){
-        this.load = load;
+    public GamePanel(Game game){
+        this.game = game;
+        addKeyListener(new KeyBoardInput(this));
         importImage();
         getPanelSize();
     }
@@ -32,7 +33,11 @@ public class GamePanel extends JPanel {
     }
 
     public void paintComponent(Graphics g){
-        g.  drawImage(backGround, 0, 0, null);
-        load.draw(g);
+        g.drawImage(backGround, 0, 0, null);
+        game.render(g);
+    }
+
+    public Game getGame(){
+        return game;
     }
 }

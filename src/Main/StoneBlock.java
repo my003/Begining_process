@@ -12,7 +12,7 @@ public class StoneBlock extends Block{
     public StoneBlock(int x, int y){
         super(x, y);
         stone = new ImageIcon(this.getClass().getResource("Image/boxsat.png")).getImage();
-    }
+    }   
 
     public void render(Graphics g){
         g.drawImage(stone, 45+x*45, 45+y*45, null);
