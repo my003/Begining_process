@@ -13,11 +13,9 @@ public class Game implements Runnable{
 
     public Game(){
         load = new LoadMap();
-        player = new Player(400, 400);
         gamePanel = new GamePanel(this);
+        player = new Player(400, 400, gamePanel);
         gameWindow = new GameWindow(gamePanel);
-        gamePanel.setFocusable(true);
-        gamePanel.requestFocus();
         startgameloop();
     }
 

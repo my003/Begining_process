@@ -2,14 +2,17 @@ package Main;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
 import static Main.Constant.AnimationConstant.*;
 
+import static Main.Check.CheckCollide;
+
 public class Player extends Entity{
 
-    private int speed = 2;
+    private int speed = 3;
     private int health;
     private int maxbom;
     private int damage;
@@ -20,10 +23,13 @@ public class Player extends Entity{
 
     private boolean up, right, down, left;
 
-    Image animation[][];
+    private Image animation[][];
 
-    public Player(int x, int y){
+    GamePanel gamePanel;
+
+    public Player(int x, int y, GamePanel gamePanel){
         super(x,y);
+        this.gamePanel = gamePanel;
         loadAnimation();
     }
 
@@ -45,12 +51,11 @@ public class Player extends Entity{
 
     public void updatePosition(){
         moving = false;
-        
-        if (left && !right) {x-= speed; moving = true; playerdir=LEFT;}
-        else if (right && !left) {x+= speed; moving = true; playerdir=RIGHT;}
+        if (left && !right && CheckCollide(x-speed, y, gamePanel.getGame().getMap())) {x-= speed; moving = true; playerdir=LEFT;}
+        else if (right && !left && CheckCollide(x+speed, y, gamePanel.getGame().getMap())) {x+= speed; moving = true; playerdir=RIGHT;}
 
-        if (up && !down) {y-= speed; moving = true; playerdir=UP;}
-        else if (down && !up) {y+= speed; moving = true; playerdir=DOWN;}
+        if (up && !down && CheckCollide(x, y-speed, gamePanel.getGame().getMap())) {y-= speed; moving = true; playerdir=UP;}
+        else if (down && !up && CheckCollide(x, y+speed, gamePanel.getGame().getMap())) {y+= speed; moving = true; playerdir=DOWN;}
     }
 
     public void updateAnitick(){

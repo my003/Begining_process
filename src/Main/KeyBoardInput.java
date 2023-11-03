@@ -38,7 +38,6 @@ public class KeyBoardInput implements KeyListener{
         switch (e.getKeyCode()){
             case KeyEvent.VK_W:
             gamepanel.getGame().getPlayer().setUp(false);
-            System.out.println("assdf");
             break;
             case KeyEvent.VK_D:
             gamepanel.getGame().getPlayer().setRight(false);

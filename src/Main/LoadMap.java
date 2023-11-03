@@ -33,4 +33,8 @@ public class LoadMap {
         }
     }
 
+    public ArrayList<Block> getMap(){
+        return blocks;
+    }
+
 }

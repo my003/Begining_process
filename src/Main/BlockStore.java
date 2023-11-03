@@ -10,6 +10,7 @@ public class BlockStore {
                 break;
             case "Wood":
                 block = new WoodBlock(x, y);
+                break;
             default:
                 break;
         }

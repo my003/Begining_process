@@ -12,5 +12,8 @@ public abstract class Block {
         this.y = y;
         rectangle = new Rectangle(45 + x*45, 45 + y*45, 45, 45);
     }
-    protected void render(Graphics g){};
+    
+    protected abstract void render(Graphics g);
+
+    protected abstract boolean isCollide(Rectangle r);
 }
