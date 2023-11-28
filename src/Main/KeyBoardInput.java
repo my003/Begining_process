@@ -12,7 +12,11 @@ public class KeyBoardInput implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        switch (e.getKeyChar()){
+            case ' ':
+            gamepanel.getGame().getPlayer().setBomb();
+            break;
+        }
     }
 
     @Override

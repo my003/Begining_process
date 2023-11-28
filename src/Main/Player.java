@@ -1,8 +1,9 @@
 package Main;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
@@ -12,10 +13,10 @@ import static Main.Check.CheckCollide;
 
 public class Player extends Entity{
 
-    private int speed = 3;
+    private int speed = 1;
     private int health;
-    private int maxbom;
-    private int damage;
+    private int maxbom = 6;
+    private int damage = 3;
 
     private int aniTick = 0, aniSpeed = 50, aniIndex =0;
     boolean moving = false;
@@ -23,15 +24,33 @@ public class Player extends Entity{
 
     private boolean up, right, down, left;
 
+    private ArrayList<Bomb> bombs;
+    private BombAdapter bombAdapter;
+
     private Image animation[][];
 
     GamePanel gamePanel;
 
     public Player(int x, int y, GamePanel gamePanel){
         super(x,y);
+        rectangle = new Rectangle(x+4, y+4, 37, 37);
         this.gamePanel = gamePanel;
         loadAnimation();
+        loadbomb(maxbom);
+        bombAdapter = new BombAdapter(gamePanel);
     }
+
+    private void loadbomb(int maxbom2) {
+        bombs = new ArrayList<>();
+        for (int i=0; i<maxbom2; ++i){
+            Bomb bomb = new Bomb(-1000, -1000, damage);
+            bombs.add(bomb);
+        }
+    }
+
+    public void setBomb(){
+        bombAdapter.addBomb();
+    }  
 
     private void loadAnimation() {
         animation = new Image[4][3];
@@ -56,6 +75,8 @@ public class Player extends Entity{
 
         if (up && !down && CheckCollide(x, y-speed, gamePanel.getGame().getMap())) {y-= speed; moving = true; playerdir=UP;}
         else if (down && !up && CheckCollide(x, y+speed, gamePanel.getGame().getMap())) {y+= speed; moving = true; playerdir=DOWN;}
+
+        rectangle.setLocation(x, y);
     }
 
     public void updateAnitick(){
@@ -72,6 +93,7 @@ public class Player extends Entity{
     public void update(){
         updatePosition();
         updateAnitick();
+        bombAdapter.reviseBomb();
     }
 
     public void setUp(boolean isUp){
@@ -94,6 +116,13 @@ public class Player extends Entity{
     public void render(Graphics g){
         g.drawImage(animation[playerdir][aniIndex], x+1, y+1, 43, 43, null);
     }
-    
+
+    public ArrayList<Bomb> getBombs(){
+        return bombs;
+    }
+
+    public Rectangle getRectangle(){
+        return rectangle;
+    }
     
 }
