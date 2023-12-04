@@ -35,9 +35,9 @@ public class BombAdapter {
 
     public void sensor(){
         for (Bomb bomb: gamePanel.getGame().getMap().getBombs() )
-        if (bomb.getPermitCollide() && !bomb.isCollide(gamePanel.getGame().getPlayer().getRectangle())){
-            bomb.setPermitCollide(false);
-        }
+            if (bomb.getPermitCollide() && !bomb.isCollide(gamePanel.getGame().getPlayer().getRectangle())){
+                bomb.setPermitCollide(false);
+            }
     }
 
 

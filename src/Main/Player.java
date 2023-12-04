@@ -50,7 +50,7 @@ public class Player extends Entity{
 
     public void setBomb(){
         bombAdapter.addBomb();
-    }  
+    }
 
     private void loadAnimation() {
         animation = new Image[4][3];
@@ -124,5 +124,5 @@ public class Player extends Entity{
     public Rectangle getRectangle(){
         return rectangle;
     }
-    
+
 }

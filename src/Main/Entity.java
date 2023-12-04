@@ -11,7 +11,6 @@ public abstract class Entity {
         this.x = x;
         this.y = y;
     }
-    
     protected void render(Graphics g){};
 
 
