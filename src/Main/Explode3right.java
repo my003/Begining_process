@@ -8,15 +8,18 @@ import javax.swing.ImageIcon;
 
 public class Explode3right extends Explosion{
         private Image explode3right;
+        private Data data;
+        private int damage;
 
-    public Explode3right(int x, int y){
+    public Explode3right(int x, int y, int damage){
         super(x, y);
         explode3right = new ImageIcon(this.getClass().getResource("Image/bombbang_right2.png")).getImage();
         rectangle = new Rectangle(x*45+45, y*45+45, 45*3, 45);
+        this.damage = damage;
     }
 
     @Override
-    protected void render(Graphics g) {
+    public void render(Graphics g) {
         bangright2(g);
     }
 
@@ -24,8 +27,21 @@ public class Explode3right extends Explosion{
         g.drawImage(explode3right, x*45+45, y*45+45, null);
     }
 
+    public void setData(Data data){
+        this.data = data;
+    }
+
+    public void buffDamage(){
+        damage+=50;
+    }
+
+    public void sensor(Rectangle r, int n){
+        if (isCollide(r)) {data.explode(damage, n);}
+    }
+
     protected void updatePosition(int x, int y) {
         this.x = x;
         this.y = y;
+        rectangle.setLocation(x*45+45, y*45+45);
     }
 }

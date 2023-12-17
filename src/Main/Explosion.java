@@ -23,4 +23,9 @@ public abstract class Explosion extends Entity{
         return rectangle.intersects(r);
     }
 
+    public void setData(Data data){
+    }
+
+    public void sensor(Rectangle r, int n){}
+
 }

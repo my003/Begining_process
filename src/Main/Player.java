@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JProgressBar;
+import java.awt.Color;
 
 import static Main.Constant.AnimationConstant.*;
 
@@ -13,9 +15,16 @@ import static Main.Check.CheckCollide;
 
 public class Player extends Entity{
 
-    private int speed = 1;
-    private int health;
-    private int maxbom = 6;
+    private int playerNumber;
+
+    KeyBoardInput keyBoardInput;
+
+    private int speed = 3;
+    private int speednormal = 3;
+    private int speedsqueeze = 1;
+    private int freezing = 0;
+    private int health = 1000;
+    private int maxbom = 2;
     private int damage = 3;
 
     private int aniTick = 0, aniSpeed = 50, aniIndex =0;
@@ -27,17 +36,23 @@ public class Player extends Entity{
     private ArrayList<Bomb> bombs;
     private BombAdapter bombAdapter;
 
+    private JProgressBar bar;
+
     private Image animation[][];
 
     GamePanel gamePanel;
 
-    public Player(int x, int y, GamePanel gamePanel){
+    public Player(int x, int y, GamePanel gamePanel, int playerNumber){
         super(x,y);
         rectangle = new Rectangle(x+4, y+4, 37, 37);
         this.gamePanel = gamePanel;
+        barhealth();
+        gamePanel.add(bar);
         loadAnimation();
         loadbomb(maxbom);
-        bombAdapter = new BombAdapter(gamePanel);
+        bombAdapter = new BombAdapter(gamePanel, playerNumber);
+        this.playerNumber = playerNumber;
+        keyBoardInput = new KeyBoardInput(gamePanel, playerNumber);
     }
 
     private void loadbomb(int maxbom2) {
@@ -46,6 +61,11 @@ public class Player extends Entity{
             Bomb bomb = new Bomb(-1000, -1000, damage);
             bombs.add(bomb);
         }
+    }
+
+    private void addNewBomb(){
+        Bomb bomb = new Bomb(-1000, -1000, damage);
+        bombs.add(bomb);
     }
 
     public void setBomb(){
@@ -90,10 +110,24 @@ public class Player extends Entity{
         else aniIndex = 0;
     }
 
+    private void freezing(){
+        if (freezing>0) {speed = speedsqueeze; freezing--;}
+        else {speed = speednormal;}
+    }
+
     public void update(){
         updatePosition();
         updateAnitick();
         bombAdapter.reviseBomb();
+        freezing();
+    }
+
+        private void barhealth() {
+        bar = new JProgressBar(0, 1000);
+        bar.setBounds(680, 20, 300, 40);
+        bar.setForeground(new Color(178, 236, 115));
+        bar.setBackground(Color.GRAY);
+        bar.setValue(health);
     }
 
     public void setUp(boolean isUp){
@@ -124,5 +158,39 @@ public class Player extends Entity{
     public Rectangle getRectangle(){
         return rectangle;
     }
+
+    public BombAdapter getBombAdapter(){
+        return bombAdapter;
+    }
     
+    public KeyBoardInput getKeyBoardInput(){
+        return keyBoardInput;
+    }
+
+    public int getSpeed(){
+        return speed;
+    }
+
+    public void setProperty(String trap){
+        switch (trap) {
+            case "Fire":
+                health-=3;
+                bar.setValue(health);
+                break;
+            case "Ice":
+                freezing = 100;
+                break;
+            case "BombItem":
+                addNewBomb();
+                break;
+            case "ShoeItem":
+                speed+=1;
+                speednormal+=1;
+                break;
+        }
+    }
+    public void beExploded(int damage){
+        health-=damage;
+        bar.setValue(health);
+    }
 }

@@ -9,14 +9,26 @@ public class Game implements Runnable{
     private final int FPS = 100 , UPS = 200;
     private Thread thread;
 
-    private Player player;
+    private Player player1, player2;
+
+    private Data data;
 
     public Game(){
-        load = new LoadMap();
         gamePanel = new GamePanel(this);
-        player = new Player(400, 400, gamePanel);
+        load = new LoadMap(gamePanel);
+        player1 = new Player(450, 450, gamePanel, 1);
+        player2 = new Player(420, 420, gamePanel, 2);
+        data = new Data(gamePanel);
+        initKeyBoard();
         gameWindow = new GameWindow(gamePanel);
         startgameloop();
+    }
+
+    private void initKeyBoard(){
+        gamePanel.addKeyListener(player1.getKeyBoardInput());
+        gamePanel.addKeyListener(player2.getKeyBoardInput());
+        gamePanel.setFocusable(true);
+        gamePanel.requestFocus();
     }
 
     private void startgameloop() {
@@ -25,12 +37,16 @@ public class Game implements Runnable{
     }
 
     public void update(){
-        player.update();
+        player1.update();
+        player2.update();
+        data.trapSensor();
     }
 
     public void render(Graphics g){
-        player.render(g);
         load.draw(g);
+        player1.render(g);
+        player2.render(g);
+        
     }
 
     @Override
@@ -54,8 +70,10 @@ public class Game implements Runnable{
 
     }
 
-    public Player getPlayer(){
-        return player;
+    public Player getPlayer(int n){
+        if (n == 1)
+        return player1;
+        return player2;
     }
 
     public LoadMap getMap(){

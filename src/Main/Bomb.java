@@ -34,18 +34,18 @@ public class Bomb extends Entity {
         super(x, y);
         bomb = new ImageIcon(this.getClass().getResource("Image/bomb.gif")).getImage();
 
-        explode2down = new Explode2down(x, y);
-        explode2left = new Explode2left(x, y);
-        explode2right = new Explode2right(x, y);
-        explode2up = new Explode2up(x, y);
-        explode3down = new Explode3down(x, y);
-        explode3left = new Explode3left(x, y);
-        explode3right = new Explode3right(x, y);
-        explode3up = new Explode3up(x, y);
-        explode4down = new Explode4down(x, y);
-        explode4left = new Explode4left(x, y);
-        explode4right = new Explode4right(x, y);
-        explode4up = new Explode4up(x, y);
+        explode2down = new Explode2down(x, y, damage);
+        explode2left = new Explode2left(x, y, damage);
+        explode2right = new Explode2right(x, y, damage);
+        explode2up = new Explode2up(x, y, damage);
+        explode3down = new Explode3down(x, y, damage);
+        explode3left = new Explode3left(x, y, damage);
+        explode3right = new Explode3right(x, y, damage);
+        explode3up = new Explode3up(x, y, damage);
+        explode4down = new Explode4down(x, y, damage);
+        explode4left = new Explode4left(x, y, damage);
+        explode4right = new Explode4right(x, y, damage);
+        explode4up = new Explode4up(x, y, damage);
         
         rectangle = new Rectangle(x*45+45, y*45+45, 45, 45);
         this.damage = damage;
@@ -240,5 +240,42 @@ public class Bomb extends Entity {
 
     public void setBangleft(int x){
         bangleft = x;
+    }
+
+    public Explode2down getExplode2down(){
+        return explode2down;
+    }
+    public Explode3down getExplode3down(){
+        return explode3down;
+    }
+    public Explode4down getExplode4down(){
+        return explode4down;
+    }
+    public Explode2up getExplode2up(){
+        return explode2up;
+    }
+    public Explode3up getExplode3up(){
+        return explode3up;
+    }
+    public Explode4up getExplode4up(){
+        return explode4up;
+    }
+    public Explode2right getExplode2right(){
+        return explode2right;
+    }
+    public Explode3right getExplode3right(){
+        return explode3right;
+    }
+    public Explode4right getExplode4right(){
+        return explode4right;
+    }
+    public Explode2left getExplode2left(){
+        return explode2left;
+    }
+    public Explode3left getExplode3left(){
+        return explode3left;
+    }
+    public Explode4left getExplode4left(){
+        return explode4left;
     }
 }

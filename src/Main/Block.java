@@ -21,4 +21,8 @@ public abstract class Block extends Entity{
     public int getY(){
         return y;
     }
+
+    public void sensor(Rectangle r, int n){}
+
+    public void setData(Data data){}
 }
