@@ -34,6 +34,18 @@ public class KeyBoardInput implements KeyListener{
             case KeyEvent.VK_A:
             gamepanel.getGame().getPlayer().setLeft(true);
             break;
+            case KeyEvent.VK_UP:
+                gamepanel.getGame().getPlayer().setUp(true);
+                break;
+            case KeyEvent.VK_RIGHT:
+                gamepanel.getGame().getPlayer().setRight(true);
+                break;
+            case KeyEvent.VK_DOWN:
+                gamepanel.getGame().getPlayer().setDown(true);
+                break;
+            case KeyEvent.VK_LEFT:
+                gamepanel.getGame().getPlayer().setLeft(true);
+                break;
         }
     }
 
@@ -52,6 +64,18 @@ public class KeyBoardInput implements KeyListener{
             case KeyEvent.VK_A:
             gamepanel.getGame().getPlayer().setLeft(false);
             break;
+            case KeyEvent.VK_UP:
+                gamepanel.getGame().getPlayer().setUp(false);
+                break;
+            case KeyEvent.VK_RIGHT:
+                gamepanel.getGame().getPlayer().setRight(false);
+                break;
+            case KeyEvent.VK_DOWN:
+                gamepanel.getGame().getPlayer().setDown(false);
+                break;
+            case KeyEvent.VK_LEFT:
+                gamepanel.getGame().getPlayer().setLeft(false);
+                break;
         }
     }
     
