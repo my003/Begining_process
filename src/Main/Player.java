@@ -53,19 +53,27 @@ public class Player extends Entity{
     }
 
     private void loadAnimation() {
-        animation = new Image[4][3];
-        animation[0][0] = new ImageIcon(this.getClass().getResource("Image/up1.png")).getImage();
-        animation[0][1] = new ImageIcon(this.getClass().getResource("Image/up2.png")).getImage();
-        animation[0][2] = new ImageIcon(this.getClass().getResource("Image/up3.png")).getImage();
-        animation[1][0] = new ImageIcon(this.getClass().getResource("Image/right1.png")).getImage();
-        animation[1][1] = new ImageIcon(this.getClass().getResource("Image/right2.png")).getImage();
-        animation[1][2] = new ImageIcon(this.getClass().getResource("Image/right3.png")).getImage();
-        animation[2][0] = new ImageIcon(this.getClass().getResource("Image/down1.png")).getImage();
-        animation[2][1] = new ImageIcon(this.getClass().getResource("Image/down2.png")).getImage();
-        animation[2][2] = new ImageIcon(this.getClass().getResource("Image/down3.png")).getImage();
-        animation[3][0] = new ImageIcon(this.getClass().getResource("Image/left1.png")).getImage();
-        animation[3][1] = new ImageIcon(this.getClass().getResource("Image/left2.png")).getImage();
-        animation[3][2] = new ImageIcon(this.getClass().getResource("Image/left3.png")).getImage();
+        animation = new Image[4][4];
+        animation[0][0] = new ImageIcon(this.getClass().getResource("Image/front1.png")).getImage();
+        animation[0][1] = new ImageIcon(this.getClass().getResource("Image/front2.png")).getImage();
+        animation[0][2] = new ImageIcon(this.getClass().getResource("Image/front3.png")).getImage();
+        animation[0][2] = new ImageIcon(this.getClass().getResource("Image/front4.png")).getImage();
+
+        animation[1][0] = new ImageIcon(this.getClass().getResource("Image/right1_1.png")).getImage();
+        animation[1][1] = new ImageIcon(this.getClass().getResource("Image/right2_1.png")).getImage();
+        animation[1][2] = new ImageIcon(this.getClass().getResource("Image/right3_1.png")).getImage();
+        animation[1][2] = new ImageIcon(this.getClass().getResource("Image/right4_1.png")).getImage();
+
+        animation[2][0] = new ImageIcon(this.getClass().getResource("Image/back1.png")).getImage();
+        animation[2][1] = new ImageIcon(this.getClass().getResource("Image/back2.png")).getImage();
+        animation[2][2] = new ImageIcon(this.getClass().getResource("Image/back3.png")).getImage();
+        animation[2][2] = new ImageIcon(this.getClass().getResource("Image/back4.png")).getImage();
+
+        animation[3][0] = new ImageIcon(this.getClass().getResource("Image/left1_1.png")).getImage();
+        animation[3][1] = new ImageIcon(this.getClass().getResource("Image/left2_1.png")).getImage();
+        animation[3][2] = new ImageIcon(this.getClass().getResource("Image/left3_1.png")).getImage();
+        animation[3][2] = new ImageIcon(this.getClass().getResource("Image/left4_1.png")).getImage();
+
     }
 
     public void updatePosition(){
