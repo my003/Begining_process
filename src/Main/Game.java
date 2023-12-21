@@ -1,13 +1,14 @@
 package Main;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 
-public class Game implements Runnable{
+public class Game {
     private GameWindow gameWindow;
     private GamePanel gamePanel;
     private LoadMap load;
-    private final int FPS = 100 , UPS = 200;
-    private Thread thread;
+
+    private ArrayList<Entity>[] entityRow;
 
     private Player player1, player2;
 
@@ -16,12 +17,23 @@ public class Game implements Runnable{
     public Game(){
         gamePanel = new GamePanel(this);
         load = new LoadMap(gamePanel);
+        initEntityOrder();
         player1 = new Player(450, 450, gamePanel, 1);
         player2 = new Player(420, 420, gamePanel, 2);
         data = new Data(gamePanel);
         initKeyBoard();
         gameWindow = new GameWindow(gamePanel);
-        startgameloop();
+
+    }
+
+    private void initEntityOrder() {
+        entityRow = new ArrayList[13];
+        for (int i=0; i<13; ++i){
+            entityRow[i] = new ArrayList<>();
+        }
+        for (Block block:load.getMap()){
+            entityRow[block.getRow()].add(block);
+        }
     }
 
     private void initKeyBoard(){
@@ -31,43 +43,31 @@ public class Game implements Runnable{
         gamePanel.requestFocus();
     }
 
-    private void startgameloop() {
-        thread = new Thread(this);
-        thread.start();
+    // public void update(){
+    //     player1.update();
+    //     player2.update();
+    //     data.trapSensor();
+    // }
+
+    public void update1(){
+        player1.update();
     }
 
-    public void update(){
-        player1.update();
+    public void update2(){
         player2.update();
+    }
+
+    public void update3(){
         data.trapSensor();
     }
 
     public void render(Graphics g){
         load.draw(g);
-        player1.render(g);
-        player2.render(g);
-        
-    }
-
-    @Override
-    public void run() {
-        double timeperframe = 1000000000.0/FPS;
-        double timeperupdate = 1000000000.0/UPS;
-        long previous = System.nanoTime();
-        double deltaF = 0;
-        double deltaU = 0;
-
-        while (true) {
-            long current = System.nanoTime();
-            deltaF += (current - previous) / timeperframe;
-            deltaU += (current - previous) / timeperupdate;
-            previous = current;
-
-            if (deltaF>=1) {deltaF--; gamePanel.repaint();}
-
-            if (deltaU>=1) {deltaU--; update();}
+        for (int i=0; i<13; ++i){
+            for (Entity entity:entityRow[i]) entity.render(g);
+            if (player1.getRow() == i) player1.render(g);
+            if (player2.getRow() == i) player2.render(g);
         }
-
     }
 
     public Player getPlayer(int n){
@@ -78,5 +78,13 @@ public class Game implements Runnable{
 
     public LoadMap getMap(){
         return load;
+    }
+
+    public GamePanel getGamePanel(){
+        return gamePanel;
+    }
+
+    public ArrayList<Entity> getEntityRow(int row){
+        return entityRow[row];
     }
 }

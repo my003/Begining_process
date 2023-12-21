@@ -21,5 +21,14 @@ public class WoodBlock extends Block{
     public boolean isCollide(Rectangle r){
         return rectangle.intersects(r);
     }
-    
+
+    public int getRow(){
+        return y;
+    }
+
+    public void setLocation(int x, int y){
+        this.x = x;
+        this.y = y;
+        rectangle.setLocation(x, y);
+    }
 }

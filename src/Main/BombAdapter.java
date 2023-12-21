@@ -33,7 +33,9 @@ public class BombAdapter {
         if (gamePanel.getGame().getPlayer(playerNumber).getBombs().size()>0 && timeLife>100){
         timeLife = 500;
         gamePanel.getGame().getPlayer(playerNumber).getBombs().get(0).setLocation(((gamePanel.getGame().getPlayer(playerNumber).x+21-45)/45), ((gamePanel.getGame().getPlayer(playerNumber).y+32-45)/45));
-        bombs.add(gamePanel.getGame().getPlayer(playerNumber).getBombs().remove(0));
+        tempBomb = gamePanel.getGame().getPlayer(playerNumber).getBombs().remove(0);
+        bombs.add(tempBomb);
+        gamePanel.getGame().getEntityRow(tempBomb.getRow()).add(tempBomb);
         }
     }
 
@@ -47,22 +49,24 @@ public class BombAdapter {
             while (bombs.size()>0) 
                 {bombs.get(0).setPermitCollide(true); 
                 bombs.get(0).resetExplosion();
-                gamePanel.getGame().getPlayer(playerNumber).getBombs().add(bombs.remove(0));}
+                tempBomb = bombs.remove(0);
+                gamePanel.getGame().getEntityRow(tempBomb.getRow()).remove(tempBomb);
+                gamePanel.getGame().getPlayer(playerNumber).getBombs().add(tempBomb);}
             timeLife = 101;
         }
     }
 
     public void sensor(){
-        for (Bomb bomb: bombs )
+        for (Bomb bomb: bombs)
         if (bomb.getPermitCollide() && !bomb.isCollide(gamePanel.getGame().getPlayer(playerNumber).getRectangle())){
             bomb.setPermitCollide(false);
         }
     }
 
-    public void drawBomb(Graphics g){
-        for (Bomb bomb: bombs){
-            bomb.render(g);
-        }
+    public void drawExplosion(Graphics g){
+        // for (Bomb bomb: bombs){
+        //     bomb.render(g);
+        // }
         if (isExplode) setExplode(g);
     }
 
@@ -121,13 +125,9 @@ public class BombAdapter {
     }
 
     public void removeBlock(int x, int y){
-        isFind = false;
         for (Block b: blocks){
-            temp3++;
-            if (b.getX()==x && b.getY() == y) {isFind = true; break;}
+            if (b.getX()==x && b.getY() == y) {b.setLocation(-1000, -1000); break;}
         }
-        if (isFind) blocks.remove(temp3);
-        temp3 = -1;
         return;
     }
 

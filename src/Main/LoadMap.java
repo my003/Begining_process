@@ -58,20 +58,20 @@ public class LoadMap {
     }
 
     public void draw(Graphics g){
-        for (Block item: items){
-            item.render(g);
-        }
         for (Block ice: iceTraps){
             ice.render(g);
         }
         for (Block fire:fireTraps){
             fire.render(g);
         }
-        for (Block block: blocks){
-            block.render(g);
+        gamePanel.getGame().getPlayer(1).getBombAdapter().drawExplosion(g);
+        gamePanel.getGame().getPlayer(2).getBombAdapter().drawExplosion(g);
+        for (Block item: items){
+            item.render(g);
         }
-        gamePanel.getGame().getPlayer(1).getBombAdapter().drawBomb(g);
-        gamePanel.getGame().getPlayer(2).getBombAdapter().drawBomb(g);
+        // for (Block block: blocks){
+        //     block.render(g);
+        // }
     }
 
     public ArrayList<Block> getMap(){

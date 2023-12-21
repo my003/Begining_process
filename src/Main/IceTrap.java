@@ -13,6 +13,7 @@ public class IceTrap extends Block{
     public IceTrap(int x, int y){
         super(x, y);
         ice = new ImageIcon(this.getClass().getResource("Image/ice.png")).getImage();
+        rectangle.setBounds(55+x*45, 55+y*45, 25, 25);
     }
 
     public void render(Graphics g){

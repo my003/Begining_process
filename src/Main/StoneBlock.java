@@ -21,4 +21,8 @@ public class StoneBlock extends Block{
     public boolean isCollide(Rectangle r){
         return rectangle.intersects(r);
     }
+    public int getRow(){
+        return y;
+    }
+
 }

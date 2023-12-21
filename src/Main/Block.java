@@ -7,7 +7,7 @@ public abstract class Block extends Entity{
 
     protected Block(int x, int y){
         super(x, y);
-        rectangle = new Rectangle(45 + x*45, 45 + y*45, 45, 45);
+        rectangle = new Rectangle(50 + x*45, 50 + y*45, 35, 35);
     }
     
     protected abstract void render(Graphics g);
@@ -25,4 +25,8 @@ public abstract class Block extends Entity{
     public void sensor(Rectangle r, int n){}
 
     public void setData(Data data){}
+
+    public int getRow(){return y;}
+
+    public void setLocation(int x, int y){}
 }

@@ -14,7 +14,7 @@ public class Explode2up extends Explosion{
     public Explode2up(int x, int y, int damage){
         super(x, y);
         explode2up = new ImageIcon(this.getClass().getResource("Image/bombbang_up1.png")).getImage();
-        rectangle = new Rectangle(x*45+45, y*45+45-45*1, 45, 45*2);
+        rectangle = new Rectangle(x*45+55, y*45+45-45*1, 25, 45*2);
         this.damage = damage;
     
     }
@@ -43,6 +43,6 @@ public class Explode2up extends Explosion{
     protected void updatePosition(int x, int y) {
         this.x = x;
         this.y = y;
-        rectangle.setLocation(x*45+45, y*45+45-45*1);
+        rectangle.setLocation(x*45+55, y*45+45-45*1);
     }
 }

@@ -19,12 +19,12 @@ public class Player extends Entity{
 
     KeyBoardInput keyBoardInput;
 
-    private int speed = 3;
-    private int speednormal = 3;
+    private int speed = 1;
+    private int speednormal = 1;
     private int speedsqueeze = 1;
     private int freezing = 0;
     private int health = 1000;
-    private int maxbom = 2;
+    private int maxbom = 5;
     private int damage = 3;
 
     private int aniTick = 0, aniSpeed = 50, aniIndex =0;
@@ -44,7 +44,7 @@ public class Player extends Entity{
 
     public Player(int x, int y, GamePanel gamePanel, int playerNumber){
         super(x,y);
-        rectangle = new Rectangle(x+4, y+4, 37, 37);
+        rectangle = new Rectangle(x+8, y+8, 29, 29);
         this.gamePanel = gamePanel;
         barhealth();
         gamePanel.add(bar);
@@ -96,7 +96,7 @@ public class Player extends Entity{
         if (up && !down && CheckCollide(x, y-speed, gamePanel.getGame().getMap())) {y-= speed; moving = true; playerdir=UP;}
         else if (down && !up && CheckCollide(x, y+speed, gamePanel.getGame().getMap())) {y+= speed; moving = true; playerdir=DOWN;}
 
-        rectangle.setLocation(x, y);
+        rectangle.setLocation(x+8, y+8);
     }
 
     public void updateAnitick(){
@@ -192,5 +192,9 @@ public class Player extends Entity{
     public void beExploded(int damage){
         health-=damage;
         bar.setValue(health);
+    }
+
+    public int getRow(){
+        return (y-45)/45;
     }
 }

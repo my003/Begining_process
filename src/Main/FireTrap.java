@@ -13,6 +13,7 @@ public class FireTrap extends Block{
     public FireTrap(int x, int y){
         super(x, y);
         fire = new ImageIcon(this.getClass().getResource("Image/fire.gif")).getImage();
+        rectangle.setBounds(55+x*45, 55+y*45, 25, 25);
     }
 
     public void render(Graphics g){
