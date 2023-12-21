@@ -47,9 +47,9 @@ public class Bomb extends Entity {
         explode4right = new Explode4right(x, y, damage);
         explode4up = new Explode4up(x, y, damage);
         
-        rectangle = new Rectangle(x*45+55, y*45+55, 25, 25);
+        rectangle = new Rectangle(x*45+50, y*45+50, 35, 35);
         this.damage = damage;
-        range = damage;
+        this.range = damage;
     }
 
     public void render(Graphics g){
@@ -187,7 +187,7 @@ public class Bomb extends Entity {
     public void setLocation(int x, int y){
         this.x = x;
         this.y = y;
-        rectangle.setLocation(x*45+55, y*45+55);
+        rectangle.setLocation(x*45+50, y*45+50);
     }
 
     public void setPermitCollide(boolean c){
@@ -216,6 +216,28 @@ public class Bomb extends Entity {
 
     public int getRange(){
         return range;
+    }
+
+    public int getDamge(){
+        return damage;
+    }
+
+    public void buffBomb(){
+        if (range<3) this.range++;
+        this.damage++;
+        explode2down.buffDamage();
+        explode2left.buffDamage();
+        explode2right.buffDamage();
+        explode2up.buffDamage();
+        explode3down.buffDamage();
+        explode3left.buffDamage();
+        explode3right.buffDamage();
+        explode3up.buffDamage();
+        explode4down.buffDamage();
+        explode4left.buffDamage();
+        explode4right.buffDamage();
+        explode4up.buffDamage();
+
     }
 
     public void setExplode(boolean t){

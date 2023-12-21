@@ -18,12 +18,11 @@ public class Game {
         gamePanel = new GamePanel(this);
         load = new LoadMap(gamePanel);
         initEntityOrder();
-        player1 = new Player(450, 450, gamePanel, 1);
-        player2 = new Player(420, 420, gamePanel, 2);
+        player1 = new Player(40, 40, gamePanel, 1);
+        player2 = new Player(675, 585, gamePanel, 2);
         data = new Data(gamePanel);
         initKeyBoard();
         gameWindow = new GameWindow(gamePanel);
-
     }
 
     private void initEntityOrder() {

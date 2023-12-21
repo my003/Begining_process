@@ -2,6 +2,7 @@ package Main;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class LoadMap {
     private ArrayList<Block> blocks;
@@ -22,6 +23,7 @@ public class LoadMap {
     }
 
     private void createMap() {
+        Random random = new Random();
         for (int i = 0; i<13; ++i)
         for (int j = 0; j<15; ++j){
             switch (item_trap[i][j]) {
@@ -31,12 +33,33 @@ public class LoadMap {
                 case 9:
                     items.add(BlockStore.createItem_Trap("Shoe", j, i));                    
                     break;
+                case 6:
+                    items.add(BlockStore.createItem_Trap("Drug", j, i));                    
+                    break;
                 case 5:
                     fireTraps.add(BlockStore.createItem_Trap("Fire", j, i));                    
                     break;
                 case 7:
                     iceTraps.add(BlockStore.createItem_Trap("Ice", j, i));                    
                     break;
+                default:
+                    break;
+            }
+        }
+
+        for (int i = 0; i<13; ++i)
+        for (int j = 0; j<15; ++j){
+            if (map[i][j] == 3)
+            switch (random.nextInt(5)) {
+                case 1:
+                    items.add(BlockStore.createItem_Trap("Drug", j, i));                    
+                    break;
+                case 2:
+                    items.add(BlockStore.createItem_Trap("Shoe", j, i));                    
+                    break;
+                case 3:
+                    items.add(BlockStore.createItem_Trap("Bomb", j, i));                   
+                break;
                 default:
                     break;
             }

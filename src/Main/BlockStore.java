@@ -26,6 +26,9 @@ public class BlockStore {
             case "Bomb":
                 block = new BombItem(x, y);
                 break;
+            case "Drug":
+                block = new DrugItem(x, y);
+                break;
             case "Fire":
                 block = new FireTrap(x, y);
                 break;

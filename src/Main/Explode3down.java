@@ -32,7 +32,7 @@ public class Explode3down extends Explosion{
     }
 
     public void buffDamage(){
-        damage+=50;
+        damage+=1;
     }
 
     public void sensor(Rectangle r, int n){

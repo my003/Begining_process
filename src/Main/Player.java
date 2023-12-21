@@ -24,8 +24,8 @@ public class Player extends Entity{
     private int speedsqueeze = 1;
     private int freezing = 0;
     private int health = 1000;
-    private int maxbom = 5;
-    private int damage = 3;
+    private int maxbom = 1;
+    private int damage = 1;
 
     private int aniTick = 0, aniSpeed = 50, aniIndex =0;
     boolean moving = false;
@@ -44,7 +44,7 @@ public class Player extends Entity{
 
     public Player(int x, int y, GamePanel gamePanel, int playerNumber){
         super(x,y);
-        rectangle = new Rectangle(x+8, y+8, 29, 29);
+        rectangle = new Rectangle(x+6, y+6, 33, 33);
         this.gamePanel = gamePanel;
         barhealth();
         gamePanel.add(bar);
@@ -96,7 +96,7 @@ public class Player extends Entity{
         if (up && !down && CheckCollide(x, y-speed, gamePanel.getGame().getMap())) {y-= speed; moving = true; playerdir=UP;}
         else if (down && !up && CheckCollide(x, y+speed, gamePanel.getGame().getMap())) {y+= speed; moving = true; playerdir=DOWN;}
 
-        rectangle.setLocation(x+8, y+8);
+        rectangle.setLocation(x+6, y+6);
     }
 
     public void updateAnitick(){
@@ -187,6 +187,10 @@ public class Player extends Entity{
                 speed+=1;
                 speednormal+=1;
                 break;
+            case "DrugItem":
+                damage++;
+                for (Bomb bomb:bombs) bomb.buffBomb();
+                for (Bomb bomb:bombAdapter.getBombs()) bomb.buffBomb();
         }
     }
     public void beExploded(int damage){

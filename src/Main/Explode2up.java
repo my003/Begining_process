@@ -33,7 +33,7 @@ public class Explode2up extends Explosion{
     }
 
     public void buffDamage(){
-        damage+=50;
+        damage+=1;
     }
 
     public void sensor(Rectangle r, int n){
