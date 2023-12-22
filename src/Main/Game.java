@@ -7,8 +7,9 @@ public class Game {
     private GameWindow gameWindow;
     private GamePanel gamePanel;
     private LoadMap load;
+    private CoverOrder coverOrder;
 
-    private ArrayList<Entity>[] entityRow;
+    //private ArrayList<Entity>[] entityRow;
 
     private Player player1, player2;
 
@@ -17,7 +18,8 @@ public class Game {
     public Game(){
         gamePanel = new GamePanel(this);
         load = new LoadMap(gamePanel);
-        initEntityOrder();
+        //initEntityOrder();
+        coverOrder = new CoverOrder(gamePanel);
         player1 = new Player(40, 40, gamePanel, 1);
         player2 = new Player(675, 585, gamePanel, 2);
         data = new Data(gamePanel);
@@ -25,15 +27,15 @@ public class Game {
         gameWindow = new GameWindow(gamePanel);
     }
 
-    private void initEntityOrder() {
-        entityRow = new ArrayList[13];
-        for (int i=0; i<13; ++i){
-            entityRow[i] = new ArrayList<>();
-        }
-        for (Block block:load.getMap()){
-            entityRow[block.getRow()].add(block);
-        }
-    }
+    // private void initEntityOrder() {
+    //     entityRow = new ArrayList[13];
+    //     for (int i=0; i<13; ++i){
+    //         entityRow[i] = new ArrayList<>();
+    //     }
+    //     for (Block block:load.getMap()){
+    //         entityRow[block.getRow()].add(block);
+    //     }
+    // }
 
     private void initKeyBoard(){
         gamePanel.addKeyListener(player1.getKeyBoardInput());
@@ -62,11 +64,7 @@ public class Game {
 
     public void render(Graphics g){
         load.draw(g);
-        for (int i=0; i<13; ++i){
-            for (Entity entity:entityRow[i]) entity.render(g);
-            if (player1.getRow() == i) player1.render(g);
-            if (player2.getRow() == i) player2.render(g);
-        }
+        coverOrder.render(g);
     }
 
     public Player getPlayer(int n){
@@ -83,7 +81,11 @@ public class Game {
         return gamePanel;
     }
 
+    public Data getData(){
+        return data;
+    }
+
     public ArrayList<Entity> getEntityRow(int row){
-        return entityRow[row];
+        return coverOrder.getEntityRow(row);
     }
 }

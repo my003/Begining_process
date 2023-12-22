@@ -3,6 +3,8 @@ package Main;
 import java.util.ArrayList;
 
 public class Subject {
+    private GamePanel gamePanel;
+
     protected ArrayList<Block> fires;
     protected ArrayList<Block> ices;
     protected ArrayList<Block> items;
@@ -11,6 +13,7 @@ public class Subject {
     private int count = 0;
 
     public Subject(GamePanel gamePanel){
+        this.gamePanel = gamePanel;
         fires = gamePanel.getGame().getMap().getFires();
         ices = gamePanel.getGame().getMap().getIces();
         items = gamePanel.getGame().getMap().getItems();
@@ -53,6 +56,34 @@ public class Subject {
 
     protected void detatchItem(Block item){
         items.remove(item);
+    }
+
+    public void addExplosion(Bomb bomb){
+        explosions.add(bomb.getExplode2down());
+        explosions.add(bomb.getExplode3down());
+        explosions.add(bomb.getExplode4down());
+        explosions.add(bomb.getExplode2up());
+        explosions.add(bomb.getExplode3up());
+        explosions.add(bomb.getExplode4up());
+        explosions.add(bomb.getExplode2left());
+        explosions.add(bomb.getExplode3left());
+        explosions.add(bomb.getExplode4left());
+        explosions.add(bomb.getExplode2right());
+        explosions.add(bomb.getExplode3right());
+        explosions.add(bomb.getExplode4right());
+
+        bomb.getExplode2down().setData(gamePanel.getGame().getData());
+        bomb.getExplode3down().setData(gamePanel.getGame().getData());
+        bomb.getExplode4down().setData(gamePanel.getGame().getData());
+        bomb.getExplode2up().setData(gamePanel.getGame().getData());
+        bomb.getExplode3up().setData(gamePanel.getGame().getData());
+        bomb.getExplode4up().setData(gamePanel.getGame().getData());
+        bomb.getExplode2left().setData(gamePanel.getGame().getData());
+        bomb.getExplode3left().setData(gamePanel.getGame().getData());
+        bomb.getExplode4left().setData(gamePanel.getGame().getData());
+        bomb.getExplode2right().setData(gamePanel.getGame().getData());
+        bomb.getExplode3right().setData(gamePanel.getGame().getData());
+        bomb.getExplode4right().setData(gamePanel.getGame().getData());
     }
 
 

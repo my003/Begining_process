@@ -64,9 +64,6 @@ public class BombAdapter {
     }
 
     public void drawExplosion(Graphics g){
-        // for (Bomb bomb: bombs){
-        //     bomb.render(g);
-        // }
         if (isExplode) setExplode(g);
     }
 

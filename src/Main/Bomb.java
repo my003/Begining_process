@@ -30,7 +30,7 @@ public class Bomb extends Entity {
 
     private int bangup, bangright, bangdown, bangleft;
 
-    public Bomb(int x, int y, int damage) {
+    public Bomb(int x, int y, int damage, int range) {
         super(x, y);
         bomb = new ImageIcon(this.getClass().getResource("Image/bomb.gif")).getImage();
 
@@ -49,7 +49,7 @@ public class Bomb extends Entity {
         
         rectangle = new Rectangle(x*45+50, y*45+50, 35, 35);
         this.damage = damage;
-        this.range = damage;
+        this.range = range;
     }
 
     public void render(Graphics g){
@@ -223,8 +223,8 @@ public class Bomb extends Entity {
     }
 
     public void buffBomb(){
-        if (range<3) this.range++;
-        this.damage++;
+        if (range<3) range++;
+        damage++;
         explode2down.buffDamage();
         explode2left.buffDamage();
         explode2right.buffDamage();

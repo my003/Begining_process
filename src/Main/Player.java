@@ -58,14 +58,17 @@ public class Player extends Entity{
     private void loadbomb(int maxbom2) {
         bombs = new ArrayList<>();
         for (int i=0; i<maxbom2; ++i){
-            Bomb bomb = new Bomb(-1000, -1000, damage);
+            Bomb bomb = new Bomb(-1000, -1000, damage, damage);
             bombs.add(bomb);
         }
     }
 
     private void addNewBomb(){
-        Bomb bomb = new Bomb(-1000, -1000, damage);
+        Bomb bomb; 
+        if (damage>3) bomb = new Bomb(-1000, -1000, damage, 3);
+        else bomb = new Bomb(-1000, -1000, damage, damage);
         bombs.add(bomb);
+        gamePanel.getGame().getData().addExplosion(bomb);
     }
 
     public void setBomb(){
