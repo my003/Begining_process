@@ -1,11 +1,9 @@
 package Main;
 
-import Main.Entity;
-
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public abstract class Explosion extends Entity {
+public abstract class Explosion extends Entity{
     public Explosion(int x, int y){
         super(x, y);
     }
@@ -24,5 +22,10 @@ public abstract class Explosion extends Entity {
     public boolean isCollide(Rectangle r){
         return rectangle.intersects(r);
     }
+
+    public void setData(Data data){
+    }
+
+    public void sensor(Rectangle r, int n){}
 
 }

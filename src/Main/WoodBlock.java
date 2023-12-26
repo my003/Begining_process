@@ -11,7 +11,7 @@ public class WoodBlock extends Block{
 
     public WoodBlock(int x, int y){
         super(x, y);
-        wood = new ImageIcon(this.getClass().getResource("Image/boxgo.png")).getImage();
+        wood = new ImageIcon(this.getClass().getResource("Image/goccay.png")).getImage();
     }
 
     public void render(Graphics g){
@@ -21,5 +21,14 @@ public class WoodBlock extends Block{
     public boolean isCollide(Rectangle r){
         return rectangle.intersects(r);
     }
-    
+
+    public int getRow(){
+        return y;
+    }
+
+    public void setLocation(int x, int y){
+        this.x = x;
+        this.y = y;
+        rectangle.setLocation(x, y);
+    }
 }
