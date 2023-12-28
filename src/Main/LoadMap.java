@@ -121,5 +121,11 @@ public class LoadMap {
         return map;
     }
 
+    public void setMapIndex(int x, int y, int value){
+        map[x][y] = value;
+    }
+    public int getIndex(int x, int y){
+        return map[x][y];
+    }
 
 }

@@ -64,7 +64,8 @@ public class GamePanel extends JPanel {
     }
 
     private void importImage() {
-        backGround = new ImageIcon(this.getClass().getResource("Image/bg2.png")).getImage();
+        backGround = new ImageIcon(this.getClass().getResource("Image/img_3.png")).getImage();
+        //backGround = new ImageIcon(this.getClass().getResource("Image/bghome.jpg")).getImage();
     }
 
     private void getPanelSize() {
@@ -73,12 +74,14 @@ public class GamePanel extends JPanel {
         setPreferredSize(size);
         setMaximumSize(size);
     }
+    private void updateGame(){
+
+    }
 
     public void paintComponent(Graphics g){
         g.drawImage(backGround, 0, 0, null);
         game.render(g);
     }
-
     public Game getGame(){
         return game;
     }

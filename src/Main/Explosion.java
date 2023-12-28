@@ -1,13 +1,15 @@
 package Main;
 
+import entity.Entity;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public abstract class Explosion extends Entity{
+public abstract class Explosion extends Entity {
     public Explosion(int x, int y){
         super(x, y);
     }
-    protected abstract void render(Graphics g);
+    public abstract void render(Graphics g);
 
     protected abstract void updatePosition(int x, int y);
 

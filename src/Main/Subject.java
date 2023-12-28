@@ -1,5 +1,7 @@
 package Main;
 
+import entity.Player;
+
 import java.util.ArrayList;
 
 public class Subject {

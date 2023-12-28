@@ -11,7 +11,7 @@ public class WoodBlock extends Block{
 
     public WoodBlock(int x, int y){
         super(x, y);
-        wood = new ImageIcon(this.getClass().getResource("Image/goccay.png")).getImage();
+        wood = new ImageIcon(this.getClass().getResource("Image/img.png")).getImage();
     }
 
     public void render(Graphics g){

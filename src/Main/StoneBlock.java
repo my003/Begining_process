@@ -11,7 +11,7 @@ public class StoneBlock extends Block{
 
     public StoneBlock(int x, int y){
         super(x, y);
-        stone = new ImageIcon(this.getClass().getResource("Image/block.png")).getImage();
+        stone = new ImageIcon(this.getClass().getResource("Image/img_2.png")).getImage();
     }
 
     public void render(Graphics g){

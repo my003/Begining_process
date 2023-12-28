@@ -102,7 +102,6 @@
 //        g2.drawImage(left, textX + 105, textY + 48 -20, titlesize - 10, titlesize - 10, null);
 //
 //    }
-//
 //    private void drawCreditState() {
 //        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 40F));
 //        // BACKGOURND
@@ -129,7 +128,6 @@
 //        g2.setColor(Color.BLACK);
 //        g2.drawString(text3, x - 40, y + 290);
 //    }
-//
 //    public void drawTitleScreen() {
 //        // BACKGOURND
 //        g2.drawImage(bg, 0, 0, 960, 960, null);
@@ -187,7 +185,6 @@
 //        g2.setStroke(new BasicStroke(5));
 //        g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
 //    }
-//
 //    public void drawOptionsScreen() {
 //        g2.setColor(Color.white);
 //        // g2.setFont(g2.getFont().deriveFont(40F));
@@ -198,18 +195,15 @@
 //        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 //        option_top(frameX, frameY);
 //    }
-//
 //    public int getXForCenteredText(String text) {
 //        int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
 //        int x = 960 / 2 - length / 2;
 //        return x;
 //    }
-//
 //    public void draw_pause(int textX, int textY) {
 //        g2.drawImage(pause, textX, textY - 70, 48, 48, null); // method to draw
 //        // System.out.println("textX: " + textX + " - " + "textY" + textY);
 //    }
-//
 //    public void option_top(int frameX, int frameY) {
 //        int textX;
 //        int textY;

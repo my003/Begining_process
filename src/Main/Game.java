@@ -197,31 +197,60 @@
 //}
 package Main;
 
-import java.awt.Graphics;
+import GameState.Credit;
+import GameState.GameStates;
+import GameState.Menu;
+import GameState.Play;
+import entity.Boss;
+import entity.Entity;
+import entity.Player;
+
+
+import java.awt.*;
 import java.util.ArrayList;
 
-public class Game {
-    private GameWindow gameWindow;
+public class Game{
+    public GameWindow gameWindow;
     private GamePanel gamePanel;
-    private LoadMap load;
-    private CoverOrder coverOrder;
-
+//    private LoadMap load;
+//    private CoverOrder coverOrder;
     //private ArrayList<Entity>[] entityRow;
+    private Play play;
+    private Menu menu;
+    private Credit credit;
 
-    private Player player1, player2;
+//    private Player player1, player2;
+//    private Data data;
+    public final static int TILES_DEFAULT_SIZE = 32;
+    public final static float SCALE = 2f;
+    public final static int TILES_IN_WIDTH = 26;
+    public final static int TILES_IN_HEIGHT = 14;
+    public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
+    public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
+    public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 
-    private Data data;
-
-    public Game(){
+    public Game() {
         gamePanel = new GamePanel(this);
-        load = new LoadMap(gamePanel);
+        intiClasses();
+        //load = new LoadMap(gamePanel);
         //initEntityOrder();
-        coverOrder = new CoverOrder(gamePanel);
-        player1 = new Player(40, 40, gamePanel, 1);
-        player2 = new Player(675, 585, gamePanel, 2);
-        data = new Data(gamePanel);
-        initKeyBoard();
+        //coverOrder = new CoverOrder(gamePanel);
+        //player1 = new Player(40, 40, gamePanel, 1);
+        //player2 = new Player(675, 585, gamePanel, 2);
+        //data = new Data(gamePanel);
+        //initKeyBoard();
         gameWindow = new GameWindow(gamePanel);
+        gamePanel.requestFocus();
+
+    }
+    private void intiClasses(){
+        menu = new Menu(this);
+        play = new Play(this);
+        credit = new Credit(this);
+    }
+
+    public void initPlay(){
+        play.initGame();
     }
 
     // private void initEntityOrder() {
@@ -234,55 +263,81 @@ public class Game {
     //     }
     // }
 
-    private void initKeyBoard(){
-        gamePanel.addKeyListener(player1.getKeyBoardInput());
-        gamePanel.addKeyListener(player2.getKeyBoardInput());
-        gamePanel.setFocusable(true);
-        gamePanel.requestFocus();
+//    private void initKeyBoard() {
+//        gamePanel.addKeyListener(player1.getKeyBoardInput());
+//        gamePanel.addKeyListener(player2.getKeyBoardInput());
+//        gamePanel.setFocusable(true);
+//        gamePanel.requestFocus();
+//    }
+
+     public void update(){
+         switch (GameStates.state) {
+             case MENU:
+                 menu.update();
+                 break;
+             case PLAY:
+                 play.update();
+                 break;
+             case CREDIT:
+                 credit.update();
+                 break;
+             case EXIT:
+             default:
+                 System.exit(0);
+                 break;
+         }
+     }
+    public void render(Graphics g) {
+        switch (GameStates.state) {
+            case MENU:
+                menu.draw(g);
+                break;
+            case PLAY:
+                play.draw(g);
+                break;
+            case CREDIT:
+                credit.draw(g);
+                break;
+            default:
+                break;
+        }
     }
-
-    // public void update(){
-    //     player1.update();
-    //     player2.update();
-    //     data.trapSensor();
-    // }
-
-    public void update1(){
-        player1.update();
-    }
-
-    public void update2(){
-        player2.update();
-    }
-
-    public void update3(){
-        data.trapSensor();
-    }
-
-    public void render(Graphics g){
-        load.draw(g);
-        coverOrder.render(g);
-    }
-
-    public Player getPlayer(int n){
+    public Player getPlayer(int n) {
         if (n == 1)
-            return player1;
-        return player2;
+            return play.getPlayer(1);
+        return play.getPlayer(2);
+    }
+    public Boss getBoss(int n){
+        if (n == 1)
+            return play.getBoss(1);
+        return play.getBoss(2);
+    }
+    public LoadMap getMap() {
+        return play.getMap();
     }
 
-    public LoadMap getMap(){
-        return load;
-    }
-
-    public GamePanel getGamePanel(){
+    public GamePanel getGamePanel() {
         return gamePanel;
     }
 
-    public Data getData(){
-        return data;
+    public GameWindow getGameWindow() {return  gameWindow;}
+
+    public Data getData() {
+        return play.getData();
     }
 
-    public ArrayList<Entity> getEntityRow(int row){
-        return coverOrder.getEntityRow(row);
+    public ArrayList<Entity> getEntityRow(int row) {
+        return play.getEntityRow(row);
     }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public Play getPlay() {
+        return play;
+    }
+
+    public Credit getCredit() { return credit; }
+
 }

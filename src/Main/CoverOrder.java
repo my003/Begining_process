@@ -1,5 +1,7 @@
 package Main;
 
+import entity.Entity;
+
 import java.util.ArrayList;
 import java.awt.Graphics;
 
@@ -27,6 +29,9 @@ public class CoverOrder {
             for (Entity entity:entityRow[i]) entity.render(g);
             if (gamePanel.getGame().getPlayer(1).getRow() == i) gamePanel.getGame().getPlayer(1).render(g);
             if (gamePanel.getGame().getPlayer(2).getRow() == i) gamePanel.getGame().getPlayer(2).render(g);
+            if (gamePanel.getGame().getBoss(1).getRow() == i) gamePanel.getGame().getBoss(1).render(g);
+            if (gamePanel.getGame().getBoss(2).getRow() == i) gamePanel.getGame().getBoss(2).render(g);
+
         }
     }
 

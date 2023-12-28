@@ -1,16 +1,18 @@
 package Main;
 
+import entity.Entity;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public abstract class Block extends Entity{
+public abstract class Block extends Entity {
 
     protected Block(int x, int y){
         super(x, y);
         rectangle = new Rectangle(50 + x*45, 50 + y*45, 35, 35);
     }
 
-    protected abstract void render(Graphics g);
+    public abstract void render(Graphics g);
 
     protected abstract boolean isCollide(Rectangle r);
 
