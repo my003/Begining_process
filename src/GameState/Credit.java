@@ -29,10 +29,6 @@ public class Credit extends State implements Statemethods{
         gamePanel.addMouseListener(this);
 
     }
-//    private int getXForCenteredText(String text) {
-//        return (int) (947/2);
-//    }
-
     private void loadBackground() {
         background = new ImageIcon(this.getClass().getResource("ui/bghome.jpg")).getImage();
         screen = new ImageIcon(this.getClass().getResource("ui/img.png")).getImage();
