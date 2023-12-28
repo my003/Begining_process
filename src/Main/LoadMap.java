@@ -50,7 +50,7 @@ public class LoadMap {
         for (int i = 0; i<13; ++i)
         for (int j = 0; j<15; ++j){
             if (map[i][j] == 3)
-            switch (random.nextInt(6)) {
+            switch (random.nextInt(7)) {
                 case 1:
                     items.add(BlockStore.createItem_Trap("Drug", j, i));                    
                     break;

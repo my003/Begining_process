@@ -177,7 +177,7 @@ public class Player extends Entity{
     public void setProperty(String trap){
         switch (trap) {
             case "Fire":
-                health-=3;
+                health-=5;
                 bar.setValue(health);
                 break;
             case "Ice":
