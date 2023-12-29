@@ -30,10 +30,9 @@ public class CreditButton {
         bounds = new Rectangle(xPos, yPos, B_WIDTH, B_HEIGHT);
     }
     private void importImage() {
-        imgs = new Image[3];
-        imgs[0] = new ImageIcon(this.getClass().getResource("btn/btnstart.png")).getImage();
-        imgs[1] = new ImageIcon(this.getClass().getResource("btn/btnstart(1).png")).getImage();
-        imgs[2] = new ImageIcon(this.getClass().getResource("btn/btnstart.png")).getImage();
+        imgs = new Image[2];
+        imgs[0] = new ImageIcon(this.getClass().getResource("btn/exitbtn.png")).getImage();
+        imgs[1] = new ImageIcon(this.getClass().getResource("btn/exitbtn(1).png")).getImage();
 
     }
     public void draw(Graphics g){
@@ -44,7 +43,7 @@ public class CreditButton {
         if (isMouseOver())
             index = 1;
         if (isMousePressed())
-            index = 2;
+            index = 0;
     }
     public boolean isMouseOver(){
         return mouseOver;

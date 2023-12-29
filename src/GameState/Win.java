@@ -30,7 +30,6 @@ public class Win extends State implements Statemethods{
 
     private void initMouse(){
         gamePanel.addMouseListener(this);
-
     }
 
     private void loadBackground() {
@@ -81,7 +80,7 @@ public class Win extends State implements Statemethods{
     }
     public void mousePressed(MouseEvent e){
         for (WinButton wb : buttons) {
-            if (isIn2(e, wb)) {
+            if (isIn4(e, wb)) {
                 wb.setMousePressed(true);
             }
         }
@@ -97,7 +96,7 @@ public class Win extends State implements Statemethods{
     @Override
     public void mouseReleased(MouseEvent e) {
         for (WinButton wb : buttons) {
-            if (isIn2(e, wb)) {
+            if (isIn4(e, wb)) {
                 if (wb.isMousePressed())
                     wb.applyGamestate();
                 break;
@@ -116,7 +115,7 @@ public class Win extends State implements Statemethods{
             mb.setMouseOver(false);
 
         for (WinButton wb : buttons)
-            if (isIn2(e, wb)) {
+            if (isIn4(e, wb)) {
                 wb.setMouseOver(true);
                 break;
             }

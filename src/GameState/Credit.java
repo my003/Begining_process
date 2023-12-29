@@ -45,7 +45,6 @@ public class Credit extends State implements Statemethods{
     public void update() {
         for (CreditButton cb : buttons)
             cb.update();
-
     }
 
     //@Override
@@ -83,9 +82,10 @@ public class Credit extends State implements Statemethods{
     public void mouseClicked(MouseEvent e){
         int mx = e.getX();
         int my = e.getY();
-        if (mx >= 0 && mx <= 947 && my >= 0 && my <= 675) {
-            GameStates.state = GameStates.MENU;
-        }
+        if (GameStates.state == GameStates.CREDIT)
+            if (mx >= 0 && mx <= 947 && my >= 0 && my <= 675) {
+                GameStates.state = GameStates.MENU;
+            }
     }
     public void mousePressed(MouseEvent e){
         for (CreditButton cb: buttons)
@@ -111,17 +111,12 @@ public class Credit extends State implements Statemethods{
     public void mouseMoved(MouseEvent e){
         for (CreditButton cb : buttons)
             cb.setMouseOver(false);
-
         for (CreditButton cb : buttons)
             if (isIn1(e, cb)) {
                 cb.setMouseOver(true);
                 break;
             }
     }
-    public void keyPressed(KeyEvent e){
-        if (e.getKeyCode() == KeyEvent.VK_ENTER)
-            GameStates.state = GameStates.MENU;
-    }
-    public void keyReleased(KeyEvent e) {
-    }
+    public void keyPressed(KeyEvent e){}
+    public void keyReleased(KeyEvent e) {}
 }

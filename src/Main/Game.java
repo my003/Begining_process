@@ -197,8 +197,11 @@
 //}
 package Main;
 
+//import Audio.AudioPlayer;
 import GameState.*;
 import GameState.Menu;
+//import UI.AudioOptions;
+import UI.PauseOverPlay;
 import UI.SoundButton;
 import entity.Boss;
 import entity.Entity;
@@ -245,11 +248,12 @@ public class Game{
                  credit.update();
                  break;
              case WIN:
-                 credit.update();
+                 win.update();
                  break;
              case EXIT:
-             default:
                  System.exit(0);
+                 break;
+             default:
                  break;
          }
      }
@@ -266,6 +270,7 @@ public class Game{
                 break;
             case WIN:
                 win.draw(g);
+                break;
             default:
                 break;
         }
@@ -308,5 +313,11 @@ public class Game{
 
     public Credit getCredit() { return credit; }
 //    public SoundButton getSound(){ return sound;}
-
+//    public AudioOptions getAudioOptions() {
+//        return audioOptions;
+//    }
+//
+//    public AudioPlayer getAudioPlayer() {
+//        return audioPlayer;
+//    }
 }

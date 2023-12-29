@@ -11,7 +11,6 @@ import static Utilz.Constants.UI.Buttons.*;
 
 public class MenuButton {
     private int xPos, yPos, rowIndex, index;
-    private int xOffsetCenter = B_WIDTH / 2;
     private GameStates state;
     private GameState.Play play;
 

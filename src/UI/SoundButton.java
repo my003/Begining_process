@@ -27,14 +27,25 @@ public class SoundButton extends PlayButton{
 
     public void update() {
         if (muted)
-            rowIndex = 1;
-        else
-            rowIndex = 0;
-        colIndex = 0;
-        if (mouseOver)
             colIndex = 1;
-        if (mousePressed)
+        else
             colIndex = 0;
+        if (x == 740  && y == 489)
+            rowIndex = 0;
+        if (x == 740 && y == 542)
+            rowIndex = 1;
+//        if (colIndex == 0) {
+//            if (mouseOver)
+//                colIndex = 1;
+//            if (mousePressed)
+//                colIndex = 0;
+//        }
+//        if (colIndex == 1) {
+//            if (mouseOver)
+//                colIndex = 1;
+//            if (mousePressed)
+//                colIndex = 0;
+//        }
 
     }
 

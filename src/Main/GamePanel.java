@@ -77,9 +77,7 @@ public class GamePanel extends JPanel {
         setPreferredSize(size);
         setMaximumSize(size);
     }
-    private void updateGame(){
-
-    }
+    private void updateGame(){}
 
     public void paintComponent(Graphics g){
         g.drawImage(backGround, 0, 0, null);

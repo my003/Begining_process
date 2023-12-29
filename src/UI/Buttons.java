@@ -7,12 +7,11 @@ import java.awt.image.BufferedImage;
 
 public class Buttons extends PlayButton {
     private Image[] imgs;
-    private int rowIndex, index;
+    private int index;
     private boolean mouseOver, mousePressed;
 
-    public Buttons(int x, int y, int width, int height, int rowIndex) {
+    public Buttons(int x, int y, int width, int height) {
         super(x, y, width, height);
-        this.rowIndex = rowIndex;
         loadImgs();
     }
 

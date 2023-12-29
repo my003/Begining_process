@@ -16,7 +16,6 @@ public class Menu extends State implements Statemethods{
     private MenuButton[] buttons = new MenuButton[3];
     private Image background;
     private int menuX, menuY, menuWidth, menuHeight;
-    public static int state = 0;
     private GamePanel gamePanel;
 
     public Menu (Game game){
@@ -31,10 +30,6 @@ public class Menu extends State implements Statemethods{
         gamePanel.addMouseListener(this);
 
     }
-    private int getXForCenteredText(String text) {
-        return (int) (947/2);
-    }
-
     private void loadBackground() {
         background = new ImageIcon(this.getClass().getResource("ui/mainWindow.png")).getImage();
         menuWidth = 947;
@@ -61,25 +56,22 @@ public class Menu extends State implements Statemethods{
             mb.draw(g);
     }
     public void mouseClicked(MouseEvent e){
-        int mx = e.getX();
-        int my = e.getY();
-        if (GameStates.state == GameStates.MENU){
-            if (mx >= 384 && mx <= 384 + 180 && my >= 337 && my <= 337 + 67) {
-                state = 0;
-                GameStates.state = GameStates.PLAY;
-            }
-            else
-            if (mx >= 384 && mx <= 384 + 180 && my >= 445 && my <= 445 + 67) {
-                state = 1;
-                System.out.println("Credit");
-                GameStates.state = GameStates.CREDIT;
-            }
-            else
-            if (mx >= 384 && mx <= 384 + 180 && my >= 553 && my <= 553 + 67) {
-                state = 2;
-                System.exit(1);
-            }
-        }
+//        int mx = e.getX();
+//        int my = e.getY();
+//        if (GameStates.state == GameStates.MENU){
+//            if (mx >= 384 && mx <= 384 + 180 && my >= 337 && my <= 337 + 67) {
+//                GameStates.state = GameStates.PLAY;
+//            }
+//            else
+//            if (mx >= 384 && mx <= 384 + 180 && my >= 445 && my <= 445 + 67) {
+//                System.out.println("Credit");
+//                GameStates.state = GameStates.CREDIT;
+//            }
+//            else
+//            if (mx >= 384 && mx <= 384 + 180 && my >= 553 && my <= 553 + 67) {
+//                System.exit(1);
+//            }
+//        }
     }
     public void mousePressed(MouseEvent e){
         for (MenuButton mb : buttons) {
@@ -90,10 +82,7 @@ public class Menu extends State implements Statemethods{
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
+    public void mouseEntered(MouseEvent e) {}
     @Override
     public void mouseExited(MouseEvent e) {}
     @Override
@@ -106,7 +95,6 @@ public class Menu extends State implements Statemethods{
             }
         }
         resetButtons();
-
     }
 
     private void resetButtons(){
@@ -116,7 +104,6 @@ public class Menu extends State implements Statemethods{
     public void mouseMoved(MouseEvent e){
         for (MenuButton mb : buttons)
             mb.setMouseOver(false);
-
         for (MenuButton mb : buttons)
             if (isIn(e, mb)) {
                 mb.setMouseOver(true);

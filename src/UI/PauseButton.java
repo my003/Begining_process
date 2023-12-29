@@ -1,69 +1,69 @@
 package UI;
+
 import GameState.GameStates;
-import GameState.Play;
-import Main.Game;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
 import javax.swing.*;
-import java.awt.Image;
-import static Utilz.Constants.UI.Buttons.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
-public class PauseButton {
+import static Utilz.Constants.UI.Buttons.B_WIDTH;
+
+public class PauseButton{
     private int xPos, yPos, rowIndex, index;
     private int xOffsetCenter = B_WIDTH / 2;
     private GameStates state;
     private GameState.Play play;
+    private Image imgs[];
+    private boolean mouseOver, mousePressed;
+    private Rectangle bounds;
 
-    protected int x, y, width, height;
-    protected Rectangle bounds;
-    public PauseButton(int x, int y, int width, int height){
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    public PauseButton(int xPos, int yPos, int rowIndex, GameStates state) {
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.rowIndex = rowIndex;
+        this.state = state;
+        importImage();
         initBounds();
     }
+
+    private void importImage() {
+        imgs = new Image[2];
+        imgs[0] = new ImageIcon(this.getClass().getResource("btn/pausebtn.png")).getImage();
+        imgs[1] = new ImageIcon(this.getClass().getResource("btn/pausebtn(1).png")).getImage();
+    }
     private void initBounds() {
-        bounds = new Rectangle(x, y, width, height);
+        bounds = new Rectangle(xPos, yPos, 180, 39);
     }
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
+    public void draw(Graphics g){
+        g.drawImage(imgs[index], xPos, yPos, 180, 39, null);
     }
 
-    public int getY() {
-        return y;
+    public void update() {
+        index = 0;
+        if (mouseOver)
+            index = 1;
+        if (mousePressed)
+            index = 0;
     }
-
-    public void setY(int y) {
-        this.y = y;
+    public boolean isMouseOver(){
+        return mouseOver;
     }
-
-    public int getWidth() {
-        return width;
+    public void setMouseOver(boolean mouseOver){
+        this.mouseOver = mouseOver;
     }
-
-    public void setWidth(int width) {
-        this.width = width;
+    public boolean isMousePressed() { return mousePressed; }
+    public void setMousePressed(boolean mousePressed){
+        this.mousePressed = mousePressed;
     }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public Rectangle getBounds() {
+    public Rectangle getBounds(){
         return bounds;
     }
-
-    public void setBounds(Rectangle bounds) {
-        this.bounds = bounds;
+    public void applyGamestate(){
+        GameStates.state = state;
     }
+    public void resetBools(){
+        mouseOver = false;
+        mousePressed = false;
+    }
+
 }
