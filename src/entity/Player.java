@@ -219,7 +219,7 @@ public class Player extends Entity {
     }
 
     public int getSpeed(){
-        return speed;
+        return speednormal;
     }
 
     public void setProperty(String trap){
