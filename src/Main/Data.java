@@ -22,7 +22,6 @@ public class Data extends Subject{
         }
     }
 
-
     public void trap(String trap, int i){
         notifyPlayer(trap, i);
     }

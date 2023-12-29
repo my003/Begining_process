@@ -63,21 +63,23 @@ public class Menu extends State implements Statemethods{
     public void mouseClicked(MouseEvent e){
         int mx = e.getX();
         int my = e.getY();
-        if (mx >= 384 && mx <= 384 + 180 && my >= 337 && my <= 337 + 67) {
-            state = 0;
-            GameStates.state = GameStates.PLAY;
-        }
-        else
+        if (GameStates.state == GameStates.MENU){
+            if (mx >= 384 && mx <= 384 + 180 && my >= 337 && my <= 337 + 67) {
+                state = 0;
+                GameStates.state = GameStates.PLAY;
+            }
+            else
             if (mx >= 384 && mx <= 384 + 180 && my >= 445 && my <= 445 + 67) {
                 state = 1;
                 System.out.println("Credit");
                 GameStates.state = GameStates.CREDIT;
             }
             else
-                if (mx >= 384 && mx <= 384 + 180 && my >= 553 && my <= 553 + 67) {
-                    state = 2;
-                    System.exit(1);
-                }
+            if (mx >= 384 && mx <= 384 + 180 && my >= 553 && my <= 553 + 67) {
+                state = 2;
+                System.exit(1);
+            }
+        }
     }
     public void mousePressed(MouseEvent e){
         for (MenuButton mb : buttons) {

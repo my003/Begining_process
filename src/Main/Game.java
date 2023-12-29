@@ -197,10 +197,8 @@
 //}
 package Main;
 
-import GameState.Credit;
-import GameState.GameStates;
+import GameState.*;
 import GameState.Menu;
-import GameState.Play;
 import UI.SoundButton;
 import entity.Boss;
 import entity.Entity;
@@ -213,33 +211,13 @@ import java.util.ArrayList;
 public class Game{
     public GameWindow gameWindow;
     private GamePanel gamePanel;
-//    private LoadMap load;
-//    private CoverOrder coverOrder;
-    //private ArrayList<Entity>[] entityRow;
     private Play play;
     private Menu menu;
     private Credit credit;
-
-//    private Player player1, player2;
-//    private Data data;
-    public final static int TILES_DEFAULT_SIZE = 32;
-    public final static float SCALE = 2f;
-    public final static int TILES_IN_WIDTH = 26;
-    public final static int TILES_IN_HEIGHT = 14;
-    public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
-    public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
-    public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
-
+    private Win win;
     public Game() {
         gamePanel = new GamePanel(this);
         intiClasses();
-        //load = new LoadMap(gamePanel);
-        //initEntityOrder();
-        //coverOrder = new CoverOrder(gamePanel);
-        //player1 = new Player(40, 40, gamePanel, 1);
-        //player2 = new Player(675, 585, gamePanel, 2);
-        //data = new Data(gamePanel);
-        //initKeyBoard();
         gameWindow = new GameWindow(gamePanel);
         gamePanel.requestFocus();
 
@@ -248,28 +226,12 @@ public class Game{
         menu = new Menu(this);
         play = new Play(this);
         credit = new Credit(this);
+        win = new Win(this);
     }
 
     public void initPlay(){
         play.initGame();
     }
-
-    // private void initEntityOrder() {
-    //     entityRow = new ArrayList[13];
-    //     for (int i=0; i<13; ++i){
-    //         entityRow[i] = new ArrayList<>();
-    //     }
-    //     for (Block block:load.getMap()){
-    //         entityRow[block.getRow()].add(block);
-    //     }
-    // }
-
-//    private void initKeyBoard() {
-//        gamePanel.addKeyListener(player1.getKeyBoardInput());
-//        gamePanel.addKeyListener(player2.getKeyBoardInput());
-//        gamePanel.setFocusable(true);
-//        gamePanel.requestFocus();
-//    }
 
      public void update(){
          switch (GameStates.state) {
@@ -280,6 +242,9 @@ public class Game{
                  play.update();
                  break;
              case CREDIT:
+                 credit.update();
+                 break;
+             case WIN:
                  credit.update();
                  break;
              case EXIT:
@@ -299,6 +264,8 @@ public class Game{
             case CREDIT:
                 credit.draw(g);
                 break;
+            case WIN:
+                win.draw(g);
             default:
                 break;
         }

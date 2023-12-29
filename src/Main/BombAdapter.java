@@ -132,5 +132,4 @@ public class BombAdapter {
         return bombs;
     }
 
-
 }

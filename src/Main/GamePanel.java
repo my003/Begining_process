@@ -46,6 +46,8 @@
 
 package Main;
 
+import entity.Player;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -65,8 +67,8 @@ public class GamePanel extends JPanel {
 
     private void importImage() {
         backGround = new ImageIcon(this.getClass().getResource("Image/map.png")).getImage();
-        card1 = new ImageIcon(this.getClass().getResource("Image/card.png")).getImage();
-        card2 = new ImageIcon(this.getClass().getResource("Image/card.png")).getImage();
+        card1 = new ImageIcon(this.getClass().getResource("mainGame/profileP1.png")).getImage();
+        card2 = new ImageIcon(this.getClass().getResource("mainGame/profileP2.png")).getImage();
     }
 
     private void getPanelSize() {
@@ -83,7 +85,6 @@ public class GamePanel extends JPanel {
         g.drawImage(backGround, 0, 0, null);
         g.drawImage(card1, 737, 142, null);
         g.drawImage(card2, 737, 297, null);
-
         game.render(g);
     }
     public Game getGame(){

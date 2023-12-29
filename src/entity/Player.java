@@ -1,19 +1,17 @@
 package entity;
 
+import GameState.Play;
 import Main.Bomb;
 import Main.BombAdapter;
 import Main.GamePanel;
 import Main.KeyBoardInput;
 import entity.Entity;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.util.ArrayList;
-import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JProgressBar;
-import java.awt.Color;
 
 import static Main.Constant.AnimationConstant.*;
 
@@ -32,6 +30,7 @@ public class Player extends Entity {
     private int health = 1000;
     private int maxbom = 1;
     private int damage = 1;
+//    private boolean winner1 = false, winner2 = false;
 
     private int aniTick = 0, aniSpeed = 50, aniIndex =0;
     boolean moving = false;
@@ -44,7 +43,7 @@ public class Player extends Entity {
 
     private JProgressBar bar;
 
-    private Image animation[][];
+    private Image animation1[][],animation2[][];
 
     GamePanel gamePanel;
 
@@ -52,9 +51,13 @@ public class Player extends Entity {
         super(x,y);
         rectangle = new Rectangle(x+6, y+6, 33, 33);
         this.gamePanel = gamePanel;
-        barhealth();
-        //gamePanel.add(bar);
-        loadAnimation();
+        if (playerNumber == 1)
+            barhealth1();
+        else
+            barhealth2();
+        gamePanel.add(bar);
+        loadAnimation1();
+        loadAnimation2();
         loadbomb(maxbom);
         bombAdapter = new BombAdapter(gamePanel, playerNumber);
         this.playerNumber = playerNumber;
@@ -81,20 +84,39 @@ public class Player extends Entity {
         bombAdapter.addBomb();
     }
 
-    private void loadAnimation() {
-        animation = new Image[4][3];
-        animation[0][0] = new ImageIcon(this.getClass().getResource("animate/up1.png")).getImage();
-        animation[0][1] = new ImageIcon(this.getClass().getResource("animate/up2.png")).getImage();
-        animation[0][2] = new ImageIcon(this.getClass().getResource("animate/up3.png")).getImage();
-        animation[1][0] = new ImageIcon(this.getClass().getResource("animate/right1.png")).getImage();
-        animation[1][1] = new ImageIcon(this.getClass().getResource("animate/right2.png")).getImage();
-        animation[1][2] = new ImageIcon(this.getClass().getResource("animate/right3.png")).getImage();
-        animation[2][0] = new ImageIcon(this.getClass().getResource("animate/down1.png")).getImage();
-        animation[2][1] = new ImageIcon(this.getClass().getResource("animate/down2.png")).getImage();
-        animation[2][2] = new ImageIcon(this.getClass().getResource("animate/down3.png")).getImage();
-        animation[3][0] = new ImageIcon(this.getClass().getResource("animate/left1.png")).getImage();
-        animation[3][1] = new ImageIcon(this.getClass().getResource("animate/left2.png")).getImage();
-        animation[3][2] = new ImageIcon(this.getClass().getResource("animate/left3.png")).getImage();
+    private void loadAnimation1() {
+        animation1 = new Image[4][4];
+        animation1[0][0] = new ImageIcon(this.getClass().getResource("player1/back1.png")).getImage();
+        animation1[0][1] = new ImageIcon(this.getClass().getResource("player1/back2.png")).getImage();
+        animation1[0][2] = new ImageIcon(this.getClass().getResource("player1/back3.png")).getImage();
+        animation1[0][3] = new ImageIcon(this.getClass().getResource("player1/back4.png")).getImage();
+        animation1[1][0] = new ImageIcon(this.getClass().getResource("player1/right1_1.png")).getImage();
+        animation1[1][1] = new ImageIcon(this.getClass().getResource("player1/right2_1.png")).getImage();
+        animation1[1][2] = new ImageIcon(this.getClass().getResource("player1/right3_1.png")).getImage();
+        animation1[1][3] = new ImageIcon(this.getClass().getResource("player1/right4_1.png")).getImage();
+        animation1[2][0] = new ImageIcon(this.getClass().getResource("player1/front1.png")).getImage();
+        animation1[2][1] = new ImageIcon(this.getClass().getResource("player1/front2.png")).getImage();
+        animation1[2][2] = new ImageIcon(this.getClass().getResource("player1/front3.png")).getImage();
+        animation1[2][3] = new ImageIcon(this.getClass().getResource("player1/front4.png")).getImage();
+        animation1[3][0] = new ImageIcon(this.getClass().getResource("player1/left1_1.png")).getImage();
+        animation1[3][1] = new ImageIcon(this.getClass().getResource("player1/left2_1.png")).getImage();
+        animation1[3][2] = new ImageIcon(this.getClass().getResource("player1/left3_1.png")).getImage();
+        animation1[3][3] = new ImageIcon(this.getClass().getResource("player1/left4_1.png")).getImage();
+    }
+    private void loadAnimation2() {
+        animation2 = new Image[4][3];
+        animation2[0][0] = new ImageIcon(this.getClass().getResource("player2/back.png")).getImage();
+        animation2[0][1] = new ImageIcon(this.getClass().getResource("player2/back1.png")).getImage();
+        animation2[0][2] = new ImageIcon(this.getClass().getResource("player2/back2.png")).getImage();
+        animation2[1][0] = new ImageIcon(this.getClass().getResource("player2/right.png")).getImage();
+        animation2[1][1] = new ImageIcon(this.getClass().getResource("player2/right1.png")).getImage();
+        animation2[1][2] = new ImageIcon(this.getClass().getResource("player2/right2.png")).getImage();
+        animation2[2][0] = new ImageIcon(this.getClass().getResource("player2/front.png")).getImage();
+        animation2[2][1] = new ImageIcon(this.getClass().getResource("player2/front1.png")).getImage();
+        animation2[2][2] = new ImageIcon(this.getClass().getResource("player2/front2.png")).getImage();
+        animation2[3][0] = new ImageIcon(this.getClass().getResource("player2/left.png")).getImage();
+        animation2[3][1] = new ImageIcon(this.getClass().getResource("player2/left1.png")).getImage();
+        animation2[3][2] = new ImageIcon(this.getClass().getResource("player2/left2.png")).getImage();
     }
 
     public void updatePosition(){
@@ -131,12 +153,28 @@ public class Player extends Entity {
         freezing();
     }
 
-    private void barhealth() {
+    private void barhealth1() {
         bar = new JProgressBar(0, 1000);
-        bar.setBounds(380, 20, 200, 40);
-        bar.setForeground(new Color(178, 236, 115));
-        bar.setBackground(Color.GRAY);
+        String s = String.valueOf(health);
+        bar.setString(s);
+        //bar.setBounds(887, 20, 200, 40);
+        //bar.setForeground(new Color(178, 236, 115));
+        bar.setBackground(Color.BLACK);
         bar.setValue(health);
+        if (bar.getValue() < 0) Play.winner = 2;
+    }
+    public int getBarHealth(){
+        return bar.getValue();
+    }
+    private void barhealth2() {
+        bar = new JProgressBar(0, 1000);
+        String s = String.valueOf(health);
+        bar.setString(s);
+        //bar.setBounds(887, 20, 200, 40);
+        //bar.setForeground(new Color(178, 236, 115));
+        bar.setBackground(Color.BLACK);
+        bar.setValue(health);
+        if (bar.getValue() < 0) Play.winner = 1;
     }
 
     public void setUp(boolean isUp){
@@ -157,7 +195,11 @@ public class Player extends Entity {
 
 
     public void render(Graphics g){
-        g.drawImage(animation[playerdir][aniIndex], x+1, y+1, 43, 43, null);
+        if (playerNumber == 1)
+            g.drawImage(animation1[playerdir][aniIndex], x+1, y+1, 43, 43, null);
+        else
+            g.drawImage(animation2[playerdir][aniIndex], x+1, y+1, 43, 43, null);
+
     }
 
     public ArrayList<Bomb> getBombs(){
@@ -202,9 +244,18 @@ public class Player extends Entity {
                 for (Bomb bomb:bombAdapter.getBombs()) bomb.buffBomb();
         }
     }
+    public int getDrug(){
+        return damage;
+    }
     public void beExploded(int damage){
         health-=damage;
         bar.setValue(health);
+//        if (health <= 0) {
+//            if (playerNumber == 1)
+//                winner1 = true;
+//            if (playerNumber == 2)
+//                winner2 = true;
+//        }
     }
 
     public int getRow(){

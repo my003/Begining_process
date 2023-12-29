@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class SoundButton extends PauseButton {
+public class SoundButton extends PlayButton{
 
     private Image[][] imgs;
     private boolean mouseOver, mousePressed;
@@ -18,10 +18,10 @@ public class SoundButton extends PauseButton {
 
     private void loadSoundImgs() {
         imgs = new Image[2][2];
-        imgs[0][0] = new ImageIcon(this.getClass().getResource("btn/sound_Effect_on.png")).getImage();
-        imgs[0][1] = new ImageIcon(this.getClass().getResource("btn/sound_Effect_on.png")).getImage();
-        imgs[1][0] = new ImageIcon(this.getClass().getResource("btn/sound_Effect_off.png")).getImage();
-        imgs[1][1] = new ImageIcon(this.getClass().getResource("btn/sound_Effect_off.png")).getImage();
+        imgs[0][0] = new ImageIcon(this.getClass().getResource("btn/soundbtn.png")).getImage();
+        imgs[0][1] = new ImageIcon(this.getClass().getResource("btn/soundbtn(1).png")).getImage();
+        imgs[1][0] = new ImageIcon(this.getClass().getResource("btn/musicbtn.png")).getImage();
+        imgs[1][1] = new ImageIcon(this.getClass().getResource("btn/musicbtn(1).png")).getImage();
 
    }
 
@@ -30,7 +30,6 @@ public class SoundButton extends PauseButton {
             rowIndex = 1;
         else
             rowIndex = 0;
-
         colIndex = 0;
         if (mouseOver)
             colIndex = 1;
