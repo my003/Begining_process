@@ -44,10 +44,8 @@ public class Boss extends Entity{
         loadAnimation();
         this.bossNumber = bossNumber;
         map = gamePanel.getGame().getMap().getMapIndex();
-        init();
-        shortestPath(map,0,1,0,6);
-        check();
-
+        //init();
+        //shortestPath(map,0,1,0,6);
     }
     public void init() {
         dr = new int[] {-1, 1, 0, 0};
@@ -66,9 +64,6 @@ public class Boss extends Entity{
         visited[sr][sc] = true;
 
     }
-    public void check(){
-
-    }
     class Point {
         int row;
         int col;
@@ -78,6 +73,10 @@ public class Boss extends Entity{
             this.row = row;
             this.col = col;
             this.dist = dist;
+        }
+        Point(int row, int col) {
+            this.row = row;
+            this.col = col;
         }
     }
     private boolean isValid(int[][] matrix, boolean[][] visited, int row, int col, int rows, int cols) {
@@ -140,7 +139,10 @@ public class Boss extends Entity{
         // up, down, left, right
         int[] dr = {-1, 1, 0, 0};
         int[] dc = {0, 0, -1, 1};
-
+        for (int i = 0; i < 13 ; i++)
+            for (int j = 0; j < 15; j++)
+                parent[i][j] = -1;
+        parent[startRow][startCol] = 0;
         queue.add(new Point(startRow, startCol, 0));
         visited[startRow][startCol] = true;
 
@@ -156,7 +158,6 @@ public class Boss extends Entity{
                 int newCol = current.col + dc[i];
 
                 if (isValid(matrix, visited, newRow, newCol, rows, cols) && map[newRow][newCol] == 1) {
-                    visited[newRow][newCol] = true;
                     queue.add(new Point(newRow, newCol, current.dist + 1));
                     parent[newRow][newCol] = current.row * cols + current.col; // Lưu trữ vị trí trước đó
                 }
@@ -170,68 +171,51 @@ public class Boss extends Entity{
                 System.out.print(parent[i][j] + " ");
             System.out.println();
             }
-        boolean end = false;
         Queue<Point> path = new LinkedList<>();
-        int rr =
-        while (!end)
-        {
-            for (int i = 0; i < 4; i++) {
-                int newRow = endRow + dr[i];
-                int newCol = endCol + dc[i];
-                if (parent[newRow][newCol] == parent[newRow][newCol])
+        int row = startRow;
+        int col = startCol;
+        int tile = parent[row][col];
+        path.add(new Point(row,col));
+
+        while (row != endRow && col != endRow){
+            if (parent[row+1][col] == tile+1) {
+                row++;
+                visited[row][col] = true;
+            }
+            else
+                if (parent[row-1][col] == tile+1) {
+                    row--;
+                    visited[row][col] = true;
+                }
+                else
+                    if (parent[row][col+1] == tile+1) {
+                        col++;
+                        visited[row][col] = true;
+                    }
+                    else
+                        if (parent[row][col-1] == tile+1) {
+                            col--;
+                            visited[row][col] = true;
+                        }
+                        else
+                        {
+                            row = -1;
+                            col = -1;
+                            path.remove();
+                        }
+            if (row != -1 && col != -1)
+                path.add(new Point(row,col));
+        }
+        for (int i = 0 ; i < 13 ; i++){
+            for (int j = 0 ; j < 15 ; j++)
+                if (visited[i][j])
+                    System.out.print("1 ");
+                else
+                    System.out.print("0 ");
+            System.out.println();
         }
         return -1; // Not found
     }
-    public void neighbours(int row, int col){
-        for (int i = 0 ; i < 4; i++){
-            int rr = row + dr[i];
-            int cc = col + dc[i];
-
-//            if (rr < 0 || cc < 0) continue;
-//            if (rr >= R || cc >= C) continue;
-//
-//            if (visited[rr][cc]) continue;
-//            if (map[rr][cc] == 3) continue;
-//            if (map[rr][cc] == 4) continue;
-//
-//            rq.add(rr);
-//            cq.add(cc);
-//            visited[rr][cc] = true;
-//            nextt++;
-            if (rr >= 0 && cc >= 0 && rr < R && cc < C)
-                if (map[rr][cc] == 1)
-                {
-                    rq.add(rr);
-                    cq.add(cc);
-                    visited[rr][cc] = true;
-                    nextt++;
-                }
-        }
-    }
-    public int solve(){
-        rq.add(sr);
-        cq.add(sc);
-        visited[sr][sc] = true;
-        while (rq.size() > 0){
-            int r = rq.poll();
-            int c = cq.poll();
-            if (map[r][c] == 0){
-                end = true;
-                break;
-            }
-            neighbours(r,c);
-            next--;
-            if (next == 0){
-                next = nextt;
-                nextt = 0;
-                move++;
-            }
-            if (end)
-                return move;
-        }
-        return -1;
-    }
-
     private void loadAnimation() {
         animation = new Image[4][1];
         animation[0][0] = new ImageIcon(this.getClass().getResource("boss/ghost/ghost_up.png")).getImage();

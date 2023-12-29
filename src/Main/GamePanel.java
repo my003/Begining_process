@@ -54,7 +54,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 public class GamePanel extends JPanel {
-    private Image backGround;
+    private Image backGround, card1, card2;
     private Game game;
 
     public GamePanel(Game game){
@@ -64,8 +64,9 @@ public class GamePanel extends JPanel {
     }
 
     private void importImage() {
-        backGround = new ImageIcon(this.getClass().getResource("Image/img_3.png")).getImage();
-        //backGround = new ImageIcon(this.getClass().getResource("Image/bghome.jpg")).getImage();
+        backGround = new ImageIcon(this.getClass().getResource("Image/map.png")).getImage();
+        card1 = new ImageIcon(this.getClass().getResource("Image/card.png")).getImage();
+        card2 = new ImageIcon(this.getClass().getResource("Image/card.png")).getImage();
     }
 
     private void getPanelSize() {
@@ -80,6 +81,9 @@ public class GamePanel extends JPanel {
 
     public void paintComponent(Graphics g){
         g.drawImage(backGround, 0, 0, null);
+        g.drawImage(card1, 737, 142, null);
+        g.drawImage(card2, 737, 297, null);
+
         game.render(g);
     }
     public Game getGame(){

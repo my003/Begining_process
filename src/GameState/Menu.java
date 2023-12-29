@@ -31,23 +31,12 @@ public class Menu extends State implements Statemethods{
         gamePanel.addMouseListener(this);
 
     }
-    private void loadFont(Graphics2D g2){
-
-        g2.setFont(g2.getFont().deriveFont(Font.ITALIC, 180F));
-        String text = "BOM IT";
-        int x = getXForCenteredText(text);
-        int y = 48 * 6;
-        Color color = new Color(201, 92, 151, 255);
-        g2.setColor(color);
-        g2.drawString(text, x, y);
-    }
-
     private int getXForCenteredText(String text) {
         return (int) (947/2);
     }
 
     private void loadBackground() {
-        background = new ImageIcon(this.getClass().getResource("ui/bghome.jpg")).getImage();
+        background = new ImageIcon(this.getClass().getResource("ui/mainWindow.png")).getImage();
         menuWidth = 947;
         menuHeight = 675;
         menuX = 0 ;
@@ -132,10 +121,6 @@ public class Menu extends State implements Statemethods{
                 break;
             }
     }
-    public void keyPressed(KeyEvent e){
-        if (e.getKeyCode() == KeyEvent.VK_ENTER)
-            GameStates.state = GameStates.PLAY;
-    }
-    public void keyReleased(KeyEvent e) {
-    }
+    public void keyPressed(KeyEvent e){}
+    public void keyReleased(KeyEvent e) {}
 }

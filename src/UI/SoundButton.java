@@ -18,10 +18,11 @@ public class SoundButton extends PauseButton {
 
     private void loadSoundImgs() {
         imgs = new Image[2][2];
-        imgs[0][0] = new ImageIcon(this.getClass().getResource("btn/sound_Music_on.png")).getImage();
-        imgs[0][1] = new ImageIcon(this.getClass().getResource("btn/sound_Music_on.png")).getImage();
-        imgs[1][0] = new ImageIcon(this.getClass().getResource("btn/sound_Music_off.png")).getImage();
-        imgs[1][1] = new ImageIcon(this.getClass().getResource("btn/sound_Music_off.png")).getImage();
+        imgs[0][0] = new ImageIcon(this.getClass().getResource("btn/sound_Effect_on.png")).getImage();
+        imgs[0][1] = new ImageIcon(this.getClass().getResource("btn/sound_Effect_on.png")).getImage();
+        imgs[1][0] = new ImageIcon(this.getClass().getResource("btn/sound_Effect_off.png")).getImage();
+        imgs[1][1] = new ImageIcon(this.getClass().getResource("btn/sound_Effect_off.png")).getImage();
+
    }
 
     public void update() {

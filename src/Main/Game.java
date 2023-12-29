@@ -201,6 +201,7 @@ import GameState.Credit;
 import GameState.GameStates;
 import GameState.Menu;
 import GameState.Play;
+import UI.SoundButton;
 import entity.Boss;
 import entity.Entity;
 import entity.Player;
@@ -339,5 +340,6 @@ public class Game{
     }
 
     public Credit getCredit() { return credit; }
+//    public SoundButton getSound(){ return sound;}
 
 }

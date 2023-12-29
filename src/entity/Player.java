@@ -53,7 +53,7 @@ public class Player extends Entity {
         rectangle = new Rectangle(x+6, y+6, 33, 33);
         this.gamePanel = gamePanel;
         barhealth();
-        gamePanel.add(bar);
+        //gamePanel.add(bar);
         loadAnimation();
         loadbomb(maxbom);
         bombAdapter = new BombAdapter(gamePanel, playerNumber);
