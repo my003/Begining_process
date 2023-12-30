@@ -11,10 +11,7 @@ import static Utilz.Constants.UI.Buttons.*;
 
 public class CreditButton {
     private int xPos, yPos, rowIndex, index;
-    private int xOffsetCenter = B_WIDTH / 2;
     private GameStates state;
-    private GameState.Play play;
-
     private Image imgs[];
     private boolean mouseOver, mousePressed;
     private Rectangle bounds;
@@ -27,7 +24,7 @@ public class CreditButton {
         initBounds();
     }
     private void initBounds() {
-        bounds = new Rectangle(xPos, yPos, B_WIDTH, B_HEIGHT);
+        bounds = new Rectangle(xPos, yPos, 122, 50);
     }
     private void importImage() {
         imgs = new Image[2];
@@ -36,7 +33,7 @@ public class CreditButton {
 
     }
     public void draw(Graphics g){
-        g.drawImage(imgs[index], xPos, yPos, 180, 67, null);
+        g.drawImage(imgs[index], xPos, yPos, 122, 50, null);
     }
     public void update() {
         index = 0;

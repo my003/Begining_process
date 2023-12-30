@@ -211,6 +211,8 @@ import entity.Player;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static GameState.Play.reset;
+
 public class Game{
     public GameWindow gameWindow;
     private GamePanel gamePanel;
@@ -223,12 +225,11 @@ public class Game{
         intiClasses();
         gameWindow = new GameWindow(gamePanel);
         gamePanel.requestFocus();
-
     }
     private void intiClasses(){
         menu = new Menu(this);
-        play = new Play(this);
         credit = new Credit(this);
+        play = new Play(this);
         win = new Win(this);
     }
 
@@ -273,6 +274,10 @@ public class Game{
                 break;
             default:
                 break;
+        }
+        if (reset) {
+            play.initGame();
+            reset = false;
         }
     }
     public Player getPlayer(int n) {

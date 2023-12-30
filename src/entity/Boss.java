@@ -45,7 +45,6 @@ public class Boss extends Entity{
         this.bossNumber = bossNumber;
         map = gamePanel.getGame().getMap().getMapIndex();
         //init();
-        //shortestPath(map,0,1,0,6);
     }
     public void init() {
         dr = new int[] {-1, 1, 0, 0};
@@ -73,10 +72,6 @@ public class Boss extends Entity{
             this.row = row;
             this.col = col;
             this.dist = dist;
-        }
-        Point(int row, int col) {
-            this.row = row;
-            this.col = col;
         }
     }
     private boolean isValid(int[][] matrix, boolean[][] visited, int row, int col, int rows, int cols) {
@@ -128,7 +123,8 @@ public class Boss extends Entity{
 //
 //        return new ArrayList<>();
 //    }
-    public int shortestPath(int[][] matrix, int startRow, int startCol, int endRow, int endCol) {
+    public int shortestPath(int[][] matrix) {
+        int startRow = 0, startCol = 0, endRow = 0, endCol = 6;
         int rows = matrix.length;
         int cols = matrix[0].length;
 
@@ -175,7 +171,7 @@ public class Boss extends Entity{
         int row = startRow;
         int col = startCol;
         int tile = parent[row][col];
-        path.add(new Point(row,col));
+        //path.add(new Point(row,col));
 
         while (row != endRow && col != endRow){
             if (parent[row+1][col] == tile+1) {
@@ -203,8 +199,8 @@ public class Boss extends Entity{
                             col = -1;
                             path.remove();
                         }
-            if (row != -1 && col != -1)
-                path.add(new Point(row,col));
+//            if (row != -1 && col != -1)
+//                path.add(new Point(row,col));
         }
         for (int i = 0 ; i < 13 ; i++){
             for (int j = 0 ; j < 15 ; j++)
@@ -235,8 +231,7 @@ public class Boss extends Entity{
         rectangle.setLocation(x+6, y+6);
     }
 
-    public void updateAnitick(){
-    }
+    public void updateAnitick(){}
 
     public void update(){
         updatePosition();

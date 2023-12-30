@@ -2,7 +2,7 @@ package GameState;
 
 import Main.Game;
 import Main.GamePanel;
-import UI.WinButton;
+import UI.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,10 +14,10 @@ import UI.WinButton;
 import UI.WinButton;
 
 public class Win extends State implements Statemethods{
-    private WinButton[] buttons = new WinButton[2];
+    private WinButton menu, retry;
+    private Play play;
     private Image background,background1, background2;
     private int menuX, menuY, menuWidth, menuHeight;
-    public static int state = 0;
     private GamePanel gamePanel;
 
     public Win (Game game){
@@ -44,82 +44,114 @@ public class Win extends State implements Statemethods{
 
     }
     private void loadButtons() {
-        buttons[0] = new WinButton(324, 458, 0, GameStates.MENU);
-        buttons[1] = new WinButton(494, 458, 1, GameStates.PLAY);
+        menu = new WinButton(324, 458, 0, GameStates.MENU);
+        retry = new WinButton(494, 458, 1, GameStates.PLAY);
     }
     @Override
     public void update() {
-        for (WinButton mb : buttons)
-            mb.update();
+//        for (WinButton mb : buttons)
+//            mb.update();
+        menu.update();
+        retry.update();
     }
-
-    @Override
     public void draw(Graphics g) {
         g.drawImage(background, 0,0,947, 675,  null);
         if (Play.winner == 1)
             g.drawImage(background1, menuX, menuY, menuWidth, menuHeight, null);
         else
             g.drawImage(background2, menuX, menuY, menuWidth, menuHeight, null);
-        for (WinButton mb : buttons)
-            mb.draw(g);
+//        for (WinButton mb : buttons)
+//            mb.draw(g);
+        menu.draw(g);
+        retry.draw(g);
     }
     public void mouseClicked(MouseEvent e){
-        int mx = e.getX();
-        int my = e.getY();
-        if (GameStates.state == GameStates.WIN){
-            if (mx >= 324 && mx <= 324 + 122 && my >= 462 && my <= 462 + 50) {
-                System.out.println("HOME");
-                GameStates.state = GameStates.MENU;
-            }
-            else
-            if (mx >= 498 && mx <= 498 + 122 && my >= 462 && my <= 462 + 50) {
-                System.out.println("Restart");
-                GameStates.state = GameStates.PLAY;
-            }
-        }
+//        int mx = e.getX();
+//        int my = e.getY();
+//        if (GameStates.state == GameStates.WIN){
+//            if (mx >= 324 && mx <= 324 + 122 && my >= 462 && my <= 462 + 50) {
+//                System.out.println("HOME");
+//                GameStates.state = GameStates.MENU;
+//            }
+//            else
+//            if (mx >= 498 && mx <= 498 + 122 && my >= 462 && my <= 462 + 50) {
+//                Play.reset = true;
+//                System.out.println("Restart");
+//                GameStates.state = GameStates.PLAY;
+//            }
+//        }
     }
     public void mousePressed(MouseEvent e){
-        for (WinButton wb : buttons) {
-            if (isIn4(e, wb)) {
-                wb.setMousePressed(true);
-            }
+//        for (WinButton wb : buttons) {
+//            if (isIn4(e, wb)) {
+//                wb.setMousePressed(true);
+//                game.reset = true;
+//                Play.winner = 0;
+//            }
+//        }
+        if (isIn(menu, e)){
+            Play.reset = true;
+            menu.setMousePressed(true);
+
+        } else if (isIn(retry, e)) {
+            retry.setMousePressed(true);
+            Play.reset = true;
         }
-    }
+        }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
+    public void mouseEntered(MouseEvent e) {}
     @Override
     public void mouseExited(MouseEvent e) {}
     @Override
     public void mouseReleased(MouseEvent e) {
-        for (WinButton wb : buttons) {
-            if (isIn4(e, wb)) {
-                if (wb.isMousePressed())
-                    wb.applyGamestate();
-                break;
+        if (isIn(menu, e)) {
+            if (menu.isMousePressed()) {
+                //play.resetAll();
+                GameStates.state = GameStates.MENU;
             }
-        }
-        resetButtons();
+        } else if (isIn(retry, e))
+            if (retry.isMousePressed()) {
+                //play.resetAll();
+                GameStates.state = GameStates.PLAY;
+            }
 
+        menu.resetBools();
+        retry.resetBools();
+//        for (WinButton wb : buttons) {
+//            if (isIn4(e, wb)) {
+//                if (wb.isMousePressed())
+//                    wb.applyGamestate();
+//                break;
+//            }
+//        }
+//        resetButtons();
     }
 
-    private void resetButtons(){
-        for (WinButton mb: buttons)
-            mb.resetBools();
-    }
+//    private void resetButtons(){
+//        for (WinButton mb: buttons)
+//            mb.resetBools();
+//    }
     public void mouseMoved(MouseEvent e){
-        for (WinButton mb : buttons)
-            mb.setMouseOver(false);
+        menu.setMouseOver(false);
+        retry.setMouseOver(false);
 
-        for (WinButton wb : buttons)
-            if (isIn4(e, wb)) {
-                wb.setMouseOver(true);
-                break;
-            }
+        if (isIn(menu, e))
+            menu.setMouseOver(true);
+        else if (isIn(retry, e))
+            retry.setMouseOver(true);
     }
+
+//        for (WinButton mb : buttons)
+//            mb.setMouseOver(false);
+//        for (WinButton wb : buttons)
+//            if (isIn4(e, wb)) {
+//                wb.setMouseOver(true);
+//                break;
+//            }
     public void keyPressed(KeyEvent e){}
     public void keyReleased(KeyEvent e) {}
+    public boolean isIn(WinButton wb, MouseEvent e){
+        return wb.getBounds().contains(e.getX(), e.getY());
+    }
 }

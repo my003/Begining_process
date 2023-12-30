@@ -80,7 +80,6 @@ public class Menu extends State implements Statemethods{
             }
         }
     }
-
     @Override
     public void mouseEntered(MouseEvent e) {}
     @Override

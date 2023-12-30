@@ -23,6 +23,15 @@ public class CoverOrder {
             entityRow[block.getRow()].add(block);
         }
     }
+    private void resetEntity(){
+        for (int i=0; i<13; ++i){
+            entityRow[i] = new ArrayList<>();
+        }
+        for (Block block:gamePanel.getGame().getMap().getMap()){
+            entityRow[block.getRow()].add(block);
+        }
+    }
+
 
     public void render(Graphics g){
         for (int i=0; i<13; ++i){

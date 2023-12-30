@@ -10,7 +10,6 @@ import static Utilz.Constants.UI.Buttons.B_WIDTH;
 
 public class PauseButton{
     private int xPos, yPos, rowIndex, index;
-    private int xOffsetCenter = B_WIDTH / 2;
     private GameStates state;
     private GameState.Play play;
     private Image imgs[];

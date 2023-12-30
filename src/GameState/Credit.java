@@ -6,8 +6,10 @@ import UI.CreditButton;
 import UI.MenuButton;
 
 import javax.swing.*;
+import javax.swing.text.Style;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 
 public class Credit extends State implements Statemethods{
@@ -27,7 +29,6 @@ public class Credit extends State implements Statemethods{
 
     private void initMouse(){
         gamePanel.addMouseListener(this);
-
     }
     private void loadBackground() {
         background = new ImageIcon(this.getClass().getResource("ui/bghome.jpg")).getImage();
@@ -39,7 +40,7 @@ public class Credit extends State implements Statemethods{
 
     }
     private void loadButtons() {
-        buttons[0] = new CreditButton(384, 445, 0, GameStates.MENU);
+        buttons[0] = new CreditButton(414, 462, 0, GameStates.MENU);
     }
     //@Override
     public void update() {
@@ -55,10 +56,11 @@ public class Credit extends State implements Statemethods{
         for (CreditButton cb : buttons)
             cb.draw(g);
         // Name
-        g.setFont(g.getFont().deriveFont(Font.ITALIC, 20F));
-
+        //Style f = (Style) Font.getFont("ui/04B_30__.TTF");
+        //g.setFont(g.getFont().deriveFont(f.getAttributeCount(),16F));
+        g.setFont(g.getFont().deriveFont(Font.ITALIC,16F));
         // PHUC
-        String text0 = "DO DINH PHUC ITCSIU21000";
+        String text0 = "DO DINH PHUC ITCSIU21219";
         int x = 350;
         int y = 48 * 3;
         g.setColor(Color.BLACK);
@@ -80,21 +82,24 @@ public class Credit extends State implements Statemethods{
         g.drawString(text3, x - 40, y + 200);
     }
     public void mouseClicked(MouseEvent e){
-        int mx = e.getX();
-        int my = e.getY();
-        if (GameStates.state == GameStates.CREDIT)
-            if (mx >= 0 && mx <= 947 && my >= 0 && my <= 675) {
-                GameStates.state = GameStates.MENU;
-            }
+//        int mx = e.getX();
+//        int my = e.getY();
+//        if (GameStates.state == GameStates.CREDIT){
+//            if (mx >= 414 && mx <= 414 + 122 && my >= 462 && my <= 462 + 50) {
+//                GameStates.state = GameStates.MENU;
+//            }
+//        }
     }
     public void mousePressed(MouseEvent e){
-        for (CreditButton cb: buttons)
+        if (GameStates.state == GameStates.CREDIT)
+            for (CreditButton cb: buttons)
             if (isIn1(e,cb)) {
                 cb.setMousePressed(true);
             }
     }
     public void mouseReleased(MouseEvent e){
-        for (CreditButton cb: buttons)
+        if (GameStates.state == GameStates.CREDIT)
+            for (CreditButton cb: buttons)
             if (isIn1(e,cb)) {
                 if (cb.isMousePressed())
                     cb.applyGamestate();
@@ -105,18 +110,32 @@ public class Credit extends State implements Statemethods{
     public void mouseEntered(MouseEvent e) {}
     public void mouseExited(MouseEvent e) {}
     private void resetButtons(){
-        for (CreditButton cb: buttons)
+        if (GameStates.state == GameStates.CREDIT)
+            for (CreditButton cb: buttons)
             cb.resetBools();
     }
     public void mouseMoved(MouseEvent e){
-        for (CreditButton cb : buttons)
-            cb.setMouseOver(false);
-        for (CreditButton cb : buttons)
-            if (isIn1(e, cb)) {
-                cb.setMouseOver(true);
-                break;
-            }
+        if (GameStates.state == GameStates.CREDIT) {
+            for (CreditButton cb : buttons)
+                cb.setMouseOver(false);
+
+            for (CreditButton cb : buttons)
+                if (isIn1(e, cb)) {
+                    cb.setMouseOver(true);
+                    break;
+                }
+        }
     }
-    public void keyPressed(KeyEvent e){}
+    public void keyPressed(KeyEvent e){
+//        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+//            GameStates.state = GameStates.MENU;
+//            bgYFloat = 0;
+//            setGamestate(Gamestate.MENU);
+    }
     public void keyReleased(KeyEvent e) {}
+//    public boolean isInc(MouseEvent e, CreditButton cb){
+//        return cb.getBounds().contains(e.getX(), e.getY());
+//    }
+    public boolean isIn1(MouseEvent e, CreditButton cb){ return cb.getBounds().contains(e.getX(), e.getY()); }
+
 }

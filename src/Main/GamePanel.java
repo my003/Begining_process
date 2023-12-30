@@ -57,12 +57,16 @@ import java.awt.Image;
 
 public class GamePanel extends JPanel {
     private Image backGround, card1, card2;
+    private MouseInputs mouseInputs;
+
     private Game game;
 
     public GamePanel(Game game){
+        mouseInputs = new MouseInputs(this);
         this.game = game;
         importImage();
         getPanelSize();
+        addMouseMotionListener(mouseInputs);
     }
 
     private void importImage() {

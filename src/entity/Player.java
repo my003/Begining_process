@@ -64,6 +64,29 @@ public class Player extends Entity {
         keyBoardInput = new KeyBoardInput(gamePanel, playerNumber);
     }
 
+    public void resetPlayer(){
+        speed = 1;
+        speednormal = 1;
+        speedsqueeze = 1;
+        freezing = 0;
+        health = 1000;
+        maxbom = 1;
+        damage = 1;
+        aniTick = 0;
+        aniSpeed = 50;
+        aniIndex =0;
+        moving = false;
+        playerdir = UP;
+        if (playerNumber == 1){
+            x = 40;
+            y = 40;
+        }
+        else {
+            x = 675;
+            y = 585;
+        }
+
+    }
     private void loadbomb(int maxbom2) {
         bombs = new ArrayList<>();
         for (int i=0; i<maxbom2; ++i){
@@ -156,12 +179,12 @@ public class Player extends Entity {
     private void barhealth1() {
         bar = new JProgressBar(0, 1000);
         String s = String.valueOf(health);
-        bar.setString(s);
+//        bar.setString(s);
         //bar.setBounds(887, 20, 200, 40);
         //bar.setForeground(new Color(178, 236, 115));
-        bar.setBackground(Color.BLACK);
+//        bar.setBackground(Color.BLACK);
         bar.setValue(health);
-        if (bar.getValue() < 0) Play.winner = 2;
+        if (bar.getValue() <= 0) Play.winner = 2;
     }
     public int getBarHealth(){
         return bar.getValue();
@@ -169,12 +192,12 @@ public class Player extends Entity {
     private void barhealth2() {
         bar = new JProgressBar(0, 1000);
         String s = String.valueOf(health);
-        bar.setString(s);
+//        bar.setString(s);
         //bar.setBounds(887, 20, 200, 40);
         //bar.setForeground(new Color(178, 236, 115));
-        bar.setBackground(Color.BLACK);
+//        bar.setBackground(Color.BLACK);
         bar.setValue(health);
-        if (bar.getValue() < 0) Play.winner = 1;
+        if (bar.getValue() <= 0) Play.winner = 1;
     }
 
     public void setUp(boolean isUp){

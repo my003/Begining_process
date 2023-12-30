@@ -238,7 +238,6 @@ public class Bomb extends Entity {
         explode4left.buffDamage();
         explode4right.buffDamage();
         explode4up.buffDamage();
-
     }
 
     public void setExplode(boolean t){

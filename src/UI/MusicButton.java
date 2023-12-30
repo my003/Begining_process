@@ -4,24 +4,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class SoundButton extends PlayButton{
+public class MusicButton extends PlayButton{
 
     private Image[][] imgs;
     private boolean mouseOver, mousePressed;
     private boolean muted;
     private int rowIndex, colIndex;
 
-    public SoundButton(int x, int y, int width, int height) {
+    public MusicButton(int x, int y, int width, int height) {
         super(x, y, width, height);
         loadSoundImgs();
     }
 
     private void loadSoundImgs() {
         imgs = new Image[1][2];
-        imgs[0][0] = new ImageIcon(this.getClass().getResource("btn/soundbtn.png")).getImage();
-        imgs[0][1] = new ImageIcon(this.getClass().getResource("btn/soundbtn(1).png")).getImage();
-
-   }
+        imgs[0][0] = new ImageIcon(this.getClass().getResource("btn/musicbtn.png")).getImage();
+        imgs[0][1] = new ImageIcon(this.getClass().getResource("btn/musicbtn(1).png")).getImage();
+    }
 
     public void update() {
         if (muted)
@@ -29,7 +28,12 @@ public class SoundButton extends PlayButton{
         else
             colIndex = 0;
         rowIndex = 0;
+//        if (x == 740  && y == 489)
+//            rowIndex = 0;
+//        if (x == 740 && y == 542)
+//            rowIndex = 1;
     }
+
     public void resetBools() {
         mouseOver = false;
         mousePressed = false;
