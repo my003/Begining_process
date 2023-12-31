@@ -12,6 +12,7 @@ public class LoadMap {
     private int[][] item_trap = Maps.Map.map_item_trap1;
     private int[][] map = Maps.Map.map1;
     private GamePanel gamePanel;
+    private int temp = 0;
 
     public LoadMap(GamePanel gamePanel){
         blocks = new ArrayList<>();
@@ -146,9 +147,11 @@ public class LoadMap {
         }
         gamePanel.getGame().getPlayer(1).getBombAdapter().drawExplosion(g);
         gamePanel.getGame().getPlayer(2).getBombAdapter().drawExplosion(g);
-        for (Block item: items){
-            item.render(g);
-        }
+        // for (Block item: items){
+        //     item.render(g);
+        // }
+        while (temp<items.size()) {items.get(temp++).render(g);}
+        temp = 0;
         // for (Block block: blocks){
         //     block.render(g);
         // }
