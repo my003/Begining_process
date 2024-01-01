@@ -6,8 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static Utilz.Constants.UI.Buttons.B_WIDTH;
-
 public class PauseButton{
     private int xPos, yPos, rowIndex, index;
     private GameStates state;

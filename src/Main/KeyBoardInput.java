@@ -19,6 +19,7 @@ public class KeyBoardInput implements KeyListener{
         if (playerNumber == 1){
             switch (e.getKeyChar()){
                 case Constant.KeySetForPlayer1.SET_BOMB:
+                    Game.playSE(6);
                     gamepanel.getGame().getPlayer(playerNumber).setBomb();
                     break;
             }
@@ -26,6 +27,7 @@ public class KeyBoardInput implements KeyListener{
         else{
             switch (e.getKeyChar()){
                 case Constant.KeySetForPlayer2.SET_BOMB:
+                    Game.playSE(6);
                     gamepanel.getGame().getPlayer(playerNumber).setBomb();
                     break;
             }

@@ -197,12 +197,9 @@
 //}
 package Main;
 
-//import Audio.AudioPlayer;
+import Audio.Sound;
 import GameState.*;
 import GameState.Menu;
-//import UI.AudioOptions;
-import UI.PauseOverPlay;
-import UI.SoundButton;
 import entity.Boss;
 import entity.Entity;
 import entity.Player;
@@ -211,7 +208,7 @@ import entity.Player;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static GameState.Play.reset;
+import static GameState.Play.*;
 
 public class Game{
     public GameWindow gameWindow;
@@ -219,6 +216,8 @@ public class Game{
     private Play play;
     private Menu menu;
     private Credit credit;
+    static Sound music = new Sound();
+    static Sound soundfe = new Sound();
     private Win win;
     public Game() {
         gamePanel = new GamePanel(this);
@@ -232,8 +231,8 @@ public class Game{
         play = new Play(this);
         win = new Win(this);
     }
-
     public void initPlay(){
+        playMusic(0);
         play.initGame();
     }
 
@@ -275,11 +274,23 @@ public class Game{
             default:
                 break;
         }
-        if (reset) {
-            play.initGame();
-            reset = false;
+    }
+
+    public static void playMusic(int i) {
+        music.setFile(i); // call setFile from sound class
+        music.play();
+        music.loop();
+    }
+    public static void stopMusic() {
+        music.stop();
+    }
+    public static void playSE(int i) {
+        if (commandNum_effect == 0) {
+            soundfe.setFile(i);
+            soundfe.play();
         }
     }
+
     public Player getPlayer(int n) {
         if (n == 1)
             return play.getPlayer(1);
@@ -317,12 +328,4 @@ public class Game{
     }
 
     public Credit getCredit() { return credit; }
-//    public SoundButton getSound(){ return sound;}
-//    public AudioOptions getAudioOptions() {
-//        return audioOptions;
-//    }
-//
-//    public AudioPlayer getAudioPlayer() {
-//        return audioPlayer;
-//    }
 }

@@ -154,11 +154,9 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import javax.swing.*;
 import java.awt.Image;
-import static Utilz.Constants.UI.Buttons.*;
 
 public class PlayButton {
     private int xPos, yPos, rowIndex, index;
-    private int xOffsetCenter = B_WIDTH / 2;
     private GameStates state;
     private GameState.Play play;
 

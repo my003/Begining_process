@@ -7,7 +7,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import javax.swing.*;
 import java.awt.Image;
-import static Utilz.Constants.UI.Buttons.*;
 
 public class CreditButton {
     private int xPos, yPos, rowIndex, index;

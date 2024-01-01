@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import javax.swing.*;
 import java.awt.Image;
-import static Utilz.Constants.UI.Buttons.*;
 
 public class WinButton {
     private int xPos, yPos, rowIndex, index;
@@ -27,8 +26,8 @@ public class WinButton {
         imgs = new Image[4];
         imgs[0] = new ImageIcon(this.getClass().getResource("btn/homeWinnerbtn.png")).getImage();
         imgs[1] = new ImageIcon(this.getClass().getResource("btn/homeWinnerbtn.png")).getImage();
-        imgs[2] = new ImageIcon(this.getClass().getResource("btn/retrybtn.png")).getImage();
-        imgs[3] = new ImageIcon(this.getClass().getResource("btn/retrybtn.png")).getImage();
+        imgs[2] = new ImageIcon(this.getClass().getResource("btn/exit_win.png")).getImage();
+        imgs[3] = new ImageIcon(this.getClass().getResource("btn/exit_win(1).png")).getImage();
 
     }
     public void draw(Graphics g){

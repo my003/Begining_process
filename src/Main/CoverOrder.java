@@ -1,13 +1,25 @@
 package Main;
 
+import GameState.Play;
 import entity.Entity;
 
 import java.util.ArrayList;
 import java.awt.Graphics;
 
+import static GameState.Play.resetCover;
+
 public class CoverOrder {
     private GamePanel gamePanel;
+
+    public void setEntityRow(ArrayList<Entity>[] entityRow) {
+        this.entityRow = entityRow;
+    }
+
     private ArrayList<Entity>[] entityRow;
+
+    public ArrayList<Entity>[] getEntityRow1() {
+        return entityRow;
+    }
     private int temp = 0;
 
     public CoverOrder(GamePanel gamePanel){
@@ -15,7 +27,7 @@ public class CoverOrder {
         initEntityOrder();
     }
 
-    private void initEntityOrder() {
+    public void initEntityOrder() {
         entityRow = new ArrayList[13];
         for (int i=0; i<13; ++i){
             entityRow[i] = new ArrayList<>();
@@ -24,16 +36,6 @@ public class CoverOrder {
             entityRow[block.getRow()].add(block);
         }
     }
-    private void resetEntity(){
-        for (int i=0; i<13; ++i){
-            entityRow[i] = new ArrayList<>();
-        }
-        for (Block block:gamePanel.getGame().getMap().getMap()){
-            entityRow[block.getRow()].add(block);
-        }
-    }
-
-
     public void render(Graphics g){
         for (int i=0; i<13; ++i){
             //for (Entity entity:entityRow[i]) entity.render(g);
@@ -46,7 +48,6 @@ public class CoverOrder {
 
         }
     }
-
     public ArrayList<Entity> getEntityRow(int row){
         return entityRow[row];
     }
