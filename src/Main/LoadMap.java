@@ -11,7 +11,7 @@ public class LoadMap {
     private ArrayList<Block> fireTraps;
     private int[][] item_trap = Maps.Map.map_item_trap1;
     private int[][] map = Maps.Map.map1;
-    private GamePanel gamePanel;
+    private GamePanel gamePanel;        
     private int temp = 0;
 
     public LoadMap(GamePanel gamePanel){

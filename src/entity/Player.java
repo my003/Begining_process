@@ -159,7 +159,8 @@ public class Player extends Entity {
             if (aniTick >= aniSpeed){
                 aniTick = 0;
                 aniIndex ++;
-                if (aniIndex >= 3) aniIndex = 0;
+                if (playerNumber==1 && aniIndex >=4) aniIndex = 0;
+                if (playerNumber==2 && aniIndex >=3) aniIndex = 0;
             }}
         else aniIndex = 0;
     }

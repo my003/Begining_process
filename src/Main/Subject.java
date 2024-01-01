@@ -10,7 +10,7 @@ public class Subject {
     protected ArrayList<Block> fires;
     protected ArrayList<Block> ices;
     protected ArrayList<Block> items;
-    protected ArrayList<Explosion> explosions;
+    protected ArrayList<Explosion> explosions;  
     protected Player[] players = new Player[2];
     private int count = 0;
 

@@ -4,7 +4,7 @@ public class GameThread1 implements Runnable{
     private Game game;
     private Thread thread;
 
-    private final int UPS1 = 150;
+    private final int UPS1 = 160;
     private final int UPS2 = 150;
     private final int UPS3 = 180;
 
