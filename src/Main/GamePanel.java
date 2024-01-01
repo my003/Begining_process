@@ -58,7 +58,6 @@ import java.awt.Image;
 public class GamePanel extends JPanel {
     private Image backGround, card1, card2;
     private MouseInputs mouseInputs;
-
     private Game game;
 
     public GamePanel(Game game){
@@ -82,7 +81,6 @@ public class GamePanel extends JPanel {
         setMaximumSize(size);
     }
     private void updateGame(){}
-
     public void paintComponent(Graphics g){
         g.drawImage(backGround, 0, 0, null);
         g.drawImage(card1, 737, 142, null);

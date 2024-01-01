@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Begining_process:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Begining_process_jar</output-path>
+    <root id="archive" name="Begining_process.jar">
+      <element id="module-output" name="Begining_process" />
+    </root>
+  </artifact>
+</component>
