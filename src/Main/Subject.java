@@ -1,5 +1,6 @@
 package Main;
 
+import GameState.Play;
 import entity.Player;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class Subject {
         this.gamePanel = gamePanel;
         fires = gamePanel.getGame().getMap().getFires();
         ices = gamePanel.getGame().getMap().getIces();
+
         items = gamePanel.getGame().getMap().getItems();
         explosions = new ArrayList<>();
         players[0] = gamePanel.getGame().getPlayer(1);

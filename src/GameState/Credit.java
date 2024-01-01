@@ -94,6 +94,7 @@ public class Credit extends State implements Statemethods{
         if (GameStates.state == GameStates.CREDIT)
             for (CreditButton cb: buttons)
             if (isIn1(e,cb)) {
+                Game.playSE(5);
                 cb.setMousePressed(true);
             }
     }

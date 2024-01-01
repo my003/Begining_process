@@ -1,5 +1,7 @@
 package Main;
 
+import static GameState.Play.resetData;
+
 public class Data extends Subject{
 
     public Data(GamePanel gamePanel){
@@ -7,7 +9,14 @@ public class Data extends Subject{
         addData();
     }
 
-    private void addData() {
+    public void addData() {
+        if (resetData){
+            fires.clear();
+            ices.clear();
+            items.clear();
+            explosions.clear();
+            resetData = false;
+        }
         for (Block fire: fires){
             fire.setData(this);
         }

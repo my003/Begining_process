@@ -1,5 +1,6 @@
 package Main;
 
+import GameState.Play;
 import entity.Boss;
 
 import java.util.LinkedList;

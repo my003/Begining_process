@@ -45,7 +45,7 @@ public class Win extends State implements Statemethods{
     }
     private void loadButtons() {
         menu = new WinButton(324, 458, 0, GameStates.MENU);
-        retry = new WinButton(494, 458, 1, GameStates.PLAY);
+        retry = new WinButton(494, 458, 1, GameStates.EXIT);
     }
     @Override
     public void update() {
@@ -58,7 +58,7 @@ public class Win extends State implements Statemethods{
         g.drawImage(background, 0,0,947, 675,  null);
         if (Play.winner == 1)
             g.drawImage(background1, menuX, menuY, menuWidth, menuHeight, null);
-        else
+        if (Play.winner == 2)
             g.drawImage(background2, menuX, menuY, menuWidth, menuHeight, null);
 //        for (WinButton mb : buttons)
 //            mb.draw(g);
@@ -66,20 +66,20 @@ public class Win extends State implements Statemethods{
         retry.draw(g);
     }
     public void mouseClicked(MouseEvent e){
-//        int mx = e.getX();
-//        int my = e.getY();
-//        if (GameStates.state == GameStates.WIN){
-//            if (mx >= 324 && mx <= 324 + 122 && my >= 462 && my <= 462 + 50) {
-//                System.out.println("HOME");
-//                GameStates.state = GameStates.MENU;
-//            }
-//            else
-//            if (mx >= 498 && mx <= 498 + 122 && my >= 462 && my <= 462 + 50) {
-//                Play.reset = true;
-//                System.out.println("Restart");
-//                GameStates.state = GameStates.PLAY;
-//            }
-//        }
+        int mx = e.getX();
+        int my = e.getY();
+        if (GameStates.state == GameStates.WIN){
+            if (mx >= 324 && mx <= 324 + 122 && my >= 462 && my <= 462 + 50) {
+                System.out.println("HOME");
+                GameStates.state = GameStates.MENU;
+            }
+            else
+            if (mx >= 498 && mx <= 498 + 122 && my >= 462 && my <= 462 + 50) {
+                Play.reset = true;
+                System.out.println("Restart");
+                GameStates.state = GameStates.EXIT;
+            }
+        }
     }
     public void mousePressed(MouseEvent e){
 //        for (WinButton wb : buttons) {
@@ -90,10 +90,12 @@ public class Win extends State implements Statemethods{
 //            }
 //        }
         if (isIn(menu, e)){
+            Game.playSE(5);
             Play.reset = true;
             menu.setMousePressed(true);
 
         } else if (isIn(retry, e)) {
+            Game.playSE(5);
             retry.setMousePressed(true);
             Play.reset = true;
         }
@@ -107,13 +109,15 @@ public class Win extends State implements Statemethods{
     public void mouseReleased(MouseEvent e) {
         if (isIn(menu, e)) {
             if (menu.isMousePressed()) {
-                //play.resetAll();
-                GameStates.state = GameStates.MENU;
+                menu.applyGamestate();
+                Play.winner = 0;
+                Play.paused = false;
             }
         } else if (isIn(retry, e))
             if (retry.isMousePressed()) {
-                //play.resetAll();
-                GameStates.state = GameStates.PLAY;
+                retry.applyGamestate();
+                Play.winner = 0;
+                Play.paused = false;
             }
 
         menu.resetBools();

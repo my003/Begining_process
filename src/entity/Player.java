@@ -1,10 +1,7 @@
 package entity;
 
 import GameState.Play;
-import Main.Bomb;
-import Main.BombAdapter;
-import Main.GamePanel;
-import Main.KeyBoardInput;
+import Main.*;
 import entity.Entity;
 
 import java.awt.*;
@@ -62,30 +59,6 @@ public class Player extends Entity {
         bombAdapter = new BombAdapter(gamePanel, playerNumber);
         this.playerNumber = playerNumber;
         keyBoardInput = new KeyBoardInput(gamePanel, playerNumber);
-    }
-
-    public void resetPlayer(){
-        speed = 1;
-        speednormal = 1;
-        speedsqueeze = 1;
-        freezing = 0;
-        health = 1000;
-        maxbom = 1;
-        damage = 1;
-        aniTick = 0;
-        aniSpeed = 50;
-        aniIndex =0;
-        moving = false;
-        playerdir = UP;
-        if (playerNumber == 1){
-            x = 40;
-            y = 40;
-        }
-        else {
-            x = 675;
-            y = 585;
-        }
-
     }
     private void loadbomb(int maxbom2) {
         bombs = new ArrayList<>();
@@ -256,13 +229,16 @@ public class Player extends Entity {
                 freezing = 100;
                 break;
             case "BombItem":
+                Game.playSE(4);
                 addNewBomb();
                 break;
             case "ShoeItem":
+                Game.playSE(4);
                 speed+=1;
                 speednormal+=1;
                 break;
             case "DrugItem":
+                Game.playSE(4);
                 damage++;
                 for (Bomb bomb:bombs) bomb.buffBomb();
                 for (Bomb bomb:bombAdapter.getBombs()) bomb.buffBomb();
@@ -274,12 +250,6 @@ public class Player extends Entity {
     public void beExploded(int damage){
         health-=damage;
         bar.setValue(health);
-//        if (health <= 0) {
-//            if (playerNumber == 1)
-//                winner1 = true;
-//            if (playerNumber == 2)
-//                winner2 = true;
-//        }
     }
 
     public int getRow(){

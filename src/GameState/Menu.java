@@ -76,6 +76,7 @@ public class Menu extends State implements Statemethods{
     public void mousePressed(MouseEvent e){
         for (MenuButton mb : buttons) {
             if (isIn(e, mb)) {
+                Game.playSE(5);
                 mb.setMousePressed(true);
             }
         }

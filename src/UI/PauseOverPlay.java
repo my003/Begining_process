@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 
 import GameState.GameStates;
 import GameState.Play;
+import Main.Game;
 
 import javax.swing.*;
 
@@ -14,14 +15,11 @@ public class PauseOverPlay {
     private Image background;
     private int bgX, bgY, bgW, bgH;
     private PauseButton pauseButton;
-    //private AudioOptions audioOptions;
 
     public PauseOverPlay(Play play) {
         this.play = play;
         loadBackground();
         createButtons();
-        //audioOptions = play.getGame().getAudioOptions();
-
     }
 
     private void createButtons() {
@@ -49,10 +47,10 @@ public class PauseOverPlay {
 
     }
     public void mousePressed(MouseEvent e) {
-        if (isIn(e, pauseButton))
+        if (isIn(e, pauseButton)) {
             pauseButton.setMousePressed(true);
-//        else
-//            audioOptions.mousePressed(e);
+            Game.playSE(5);
+        }
     }
 
     public void mouseReleased(MouseEvent e) {
@@ -67,8 +65,6 @@ public class PauseOverPlay {
         //pauseButton.setMouseOver(false);
         if (isIn(e, pauseButton))
             pauseButton.setMouseOver(true);
-//        else
-//            audioOptions.mouseMoved(e);
     }
 
     private boolean isIn(MouseEvent e, PauseButton b) {
