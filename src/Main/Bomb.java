@@ -34,7 +34,7 @@ public class Bomb extends Entity {
 
     public Bomb(int x, int y, int damage, int range) {
         super(x, y);
-        bomb = new ImageIcon(this.getClass().getResource("Image/bomb(1).gif")).getImage();
+        bomb = new ImageIcon(this.getClass().getResource("Image/bomb_effect.gif")).getImage();
         explode2down = new Explode2down(x, y, damage);
         explode2left = new Explode2left(x, y, damage);
         explode2right = new Explode2right(x, y, damage);
