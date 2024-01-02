@@ -1,17 +1,21 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Following the concept of Entity class, create the player's attributes and features
+*/
 package entity;
 
 import GameState.Play;
 import Main.*;
-import entity.Entity;
-
 import java.awt.*;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JProgressBar;
-
 import static Main.Constant.AnimationConstant.*;
-
 import static Main.Check.CheckCollide;
 
 public class Player extends Entity {

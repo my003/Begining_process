@@ -1,3 +1,13 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Following the concept of Block class, create the stone block's attributes and features
+             import image and set position.
+*/
 package Main;
 
 import java.awt.Graphics;
@@ -11,7 +21,7 @@ public class StoneBlock extends Block{
 
     public StoneBlock(int x, int y){
         super(x, y);
-        stone = new ImageIcon(this.getClass().getResource("Image/img_2.png")).getImage();
+        stone = new ImageIcon(this.getClass().getResource("Image/block.png")).getImage();
     }
 
     public void render(Graphics g){

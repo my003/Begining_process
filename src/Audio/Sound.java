@@ -1,3 +1,12 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Sound and music control (Switch on/off)
+*/
 package Audio;
 
 import javax.sound.sampled.*;
@@ -9,8 +18,7 @@ import java.net.URL;
 public class Sound {
     AudioInputStream ais;
     Clip clip;
-    URL[] soundURL = new URL[10];
-
+    URL[] soundURL = new URL[7];
 
     public Sound() {
         soundURL[0] = getResourceURL("src/Audio/sound/music.wav");
@@ -20,9 +28,7 @@ public class Sound {
         soundURL[4] = getResourceURL("src/Audio/sound/pickup.wav");
         soundURL[5] = getResourceURL("src/Audio/sound/select.wav");
         soundURL[6] = getResourceURL("src/Audio/sound/datBom.wav");
-
     }
-
     private URL getResourceURL(String resourcePath) {
         try {
             File file = new File(resourcePath);
@@ -56,22 +62,4 @@ public class Sound {
         clip.stop();
     }
 
-    boolean isPlaying = true;
-    public void playWalk(){
-        if(isPlaying){
-            return;
-        }
-        isPlaying = true;
-        clip.start();
-
-        new Thread(() -> {
-            try{
-                Thread.sleep(300); // delay for 0.3s
-                clip.stop();
-                isPlaying = false;
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
-    }
 }

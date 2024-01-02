@@ -1,9 +1,16 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Import a picture and set the button positions on the Play state.
+*/
 package UI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-
 
 public class Buttons extends PlayButton {
     private Image[] imgs;

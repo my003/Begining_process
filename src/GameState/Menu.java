@@ -1,3 +1,13 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Design the Menu state (import image and add buttons)
+             following the concept of implement from Statemethod and extend from State
+*/
 package GameState;
 
 import Main.Game;
@@ -55,24 +65,7 @@ public class Menu extends State implements Statemethods{
         for (MenuButton mb : buttons)
             mb.draw(g);
     }
-    public void mouseClicked(MouseEvent e){
-//        int mx = e.getX();
-//        int my = e.getY();
-//        if (GameStates.state == GameStates.MENU){
-//            if (mx >= 384 && mx <= 384 + 180 && my >= 337 && my <= 337 + 67) {
-//                GameStates.state = GameStates.PLAY;
-//            }
-//            else
-//            if (mx >= 384 && mx <= 384 + 180 && my >= 445 && my <= 445 + 67) {
-//                System.out.println("Credit");
-//                GameStates.state = GameStates.CREDIT;
-//            }
-//            else
-//            if (mx >= 384 && mx <= 384 + 180 && my >= 553 && my <= 553 + 67) {
-//                System.exit(1);
-//            }
-//        }
-    }
+    public void mouseClicked(MouseEvent e){}
     public void mousePressed(MouseEvent e){
         for (MenuButton mb : buttons) {
             if (isIn(e, mb)) {
@@ -96,6 +89,7 @@ public class Menu extends State implements Statemethods{
         }
         resetButtons();
     }
+
 
     private void resetButtons(){
         for (MenuButton mb: buttons)

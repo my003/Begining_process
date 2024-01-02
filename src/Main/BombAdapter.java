@@ -1,3 +1,12 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Describe the steps of timeline required for placing a bomb, exploding it, and disappearing.
+*/
 package Main;
 
 import java.util.ArrayList;
@@ -12,11 +21,9 @@ public class BombAdapter {
 
     private int temp = 0;
     private int temp2;
-    private int temp3 = -1;
     private Bomb tempBomb;
 
     private boolean isExplode = false;
-    private boolean isFind = false;
     private int[][] map;
     private ArrayList<Block> blocks;
 
@@ -125,7 +132,6 @@ public class BombAdapter {
         for (Block b: blocks){
             if (b.getX()==x && b.getY() == y) {b.setLocation(-1000, -1000); break;}
         }
-        return;
     }
 
     public ArrayList<Bomb> getBombs(){

@@ -1,3 +1,12 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Controlling the creation of Stone Block and WoodBlock, item and trap base on extension of block.
+*/
 package Main;
 
 public class BlockStore {

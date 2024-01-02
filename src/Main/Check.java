@@ -1,3 +1,13 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Checking the collide with the entity around (including bomb and item and box)
+             to find place where players can pass.
+*/
 package Main;
 
 import java.awt.Rectangle;
@@ -12,13 +22,4 @@ public class Check {
         for (Bomb bomb: map.getBombs(2)) if (bomb.isCollide(rec1) && !bomb.getPermitCollide()) return false;
         return true;
     }
-
-    // public static boolean CheckTrap(int x, int y, LoadMap map){
-    //     for (Bomb bomb: map.getBombs(1)) if (bomb.isCollide(rec1) && !bomb.getPermitCollide()) return true;
-    //     for (Bomb bomb: map.getBombs(2)) if (bomb.isCollide(rec1) && !bomb.getPermitCollide()) return true;
-    //     return false;
-    // }
-
-
-
 }

@@ -1,8 +1,18 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Check the sensor between Player with the items (disappear) and the trap (freeze or damage).
+             Insert the image of bomb explosion.
+             Notify for Player to update the properties.
+
+*/
 package Main;
 
-import GameState.Play;
 import entity.Player;
-
 import java.util.ArrayList;
 
 public class Subject {

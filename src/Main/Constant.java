@@ -1,3 +1,14 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Setting up 4 direction (up, right, down, left) for player to load the animation when walking
+             For player1, the key set include (W, D, S, A) and set bom = "SPACE"
+             For player2, the key set include (up, right, down, left) and set bom = "p"
+*/
 package Main;
 
 import java.awt.event.KeyEvent;

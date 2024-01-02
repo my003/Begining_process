@@ -1,3 +1,13 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: following the concept of implement from Statemethod and extend from State
+*/
+
 package GameState;
 
 import java.awt.*;
@@ -7,24 +17,19 @@ import java.util.ArrayList;
 
 import Main.*;
 import UI.*;
-import entity.Boss;
 import entity.Entity;
 import entity.Player;
 
 public class Play extends State implements Statemethods {
     private Player player1, player2;
-    private Boss boss1, boss2;
     private Data data;
-    public LoadMap load, load1;
+    public LoadMap load;
     private GamePanel gamePanel;
     private CoverOrder coverOrder;
-    private Boss boss;
     private GameWindow gameWindow;
     private PauseOverPlay pauseOverPlay;
-    private Win win;
     static boolean paused = false;
     public static int commandNum_music = 0, commandNum_effect = 0;
-    public static boolean reset = false, resetLoad = false, resetCover = false,reaset = false, resetData = false;
     public static int winner = 0;
     private SoundButton soundButton;
     private MusicButton musicButton;
@@ -33,47 +38,11 @@ public class Play extends State implements Statemethods {
         super(game);
         this.gamePanel = game.getGamePanel();
     }
-    public void resetInitGame(){
-        resetCover = true;
-        resetLoad = true;
-        resetData = true;
-        load = load1;
-//        load = new LoadMap(gamePanel);
-        load.resetMap();
-       // coverOrder = new CoverOrder(gamePanel);
-        coverOrder.initEntityOrder();
-        player1 = new Player(40, 40, gamePanel, 1);
-        player2 = new Player(675, 585, gamePanel, 2);
-        boss1 = new Boss(100,40,gamePanel,1);
-        boss2 = new Boss( 575,585,gamePanel,2);
-        data = new Data(gamePanel);
-        //data.addData();
-        createButtons();
-        pauseOverPlay = new PauseOverPlay(this);
-        initKeyBoard();
-        initMouse();
-        this.gameWindow = game.getGameWindow();
-    }
     public void initGame(){
         load = new LoadMap(gamePanel);
-        load1 = new LoadMap(gamePanel);
         coverOrder = new CoverOrder(gamePanel);
-//        if (reset) {
-//            resetLoad = true;
-//            load.resetMap();
-//            coverOrder.initEntityOrder();
-////            resetCover = true;
-////            load.setItems(game.itemsBu);
-////            load.setBlocks(game.blockBu);
-////            coverOrder.setEntityRow(game.entityRowBu);
-////            load.createMap();
-////            coverOrder.initEntityOrder();
-//            reset = false;
-//        }
         player1 = new Player(40, 40, gamePanel, 1);
         player2 = new Player(675, 585, gamePanel, 2);
-        boss1 = new Boss(100,40,gamePanel,1);
-        boss2 = new Boss( 575,585,gamePanel,2);
         data = new Data(gamePanel);
         createButtons();
         pauseOverPlay = new PauseOverPlay(this);
@@ -94,22 +63,20 @@ public class Play extends State implements Statemethods {
     @Override
     public void update() {
         if (winner == 0)
-        if (paused)
-            pauseOverPlay.update();
-        else
-        {
+            if (paused)
+                pauseOverPlay.update();
+            else
+            {
 
-            player1.update();
-            player2.update();
-            boss1.update();
-            boss2.update();
-            data.trapSensor();
-            musicButton.update();
-            soundButton.update();
+                player1.update();
+                player2.update();
+                data.trapSensor();
+                musicButton.update();
+                soundButton.update();
 
-            exit.update();
-            unpause.update();
-        }
+                exit.update();
+                unpause.update();
+            }
     }
     @Override
     public void draw(Graphics g) {
@@ -134,11 +101,6 @@ public class Play extends State implements Statemethods {
         if (n == 1)
             return player1;
         return player2;
-    }
-    public Boss getBoss(int n){
-        if (n == 1)
-            return boss1;
-        return boss2;
     }
     public LoadMap getMap() {
         return load;
@@ -182,10 +144,6 @@ public class Play extends State implements Statemethods {
             applyGamestate();
         }
     }
-//    public void resetAll(){
-//        paused = false;
-//        winner = 0;
-//    }
     private void createButtons() {
         soundButton = new SoundButton(740, 489, 187, 39);
         musicButton = new MusicButton(740, 540, 187, 39);
@@ -195,34 +153,7 @@ public class Play extends State implements Statemethods {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-//        int mx = e.getX();
-//        int my = e.getY();
-//        if (GameStates.state == GameStates.PLAY){
-//            if (paused)
-//            {
-//                if (mx >= 740 && mx <= 740 + 187 && my >= 438 && my <= 438 + 39) {
-//                    System.out.println("UnPause");
-//                    paused = false;
-//                }
-//            }
-//            else {
-//                if (mx >= 740 && mx <= 740 + 187 && my >= 438 && my <= 438 + 39) {
-//                    System.out.println("Pause");
-//                    paused = true;
-//                }
-//                else
-//                if (mx >= 740 && mx <= 740 + 187 && my >= 489 && my <= 489 + 39) {
-//                    System.out.println("Sound");}
-//                else
-//                if (mx >= 740 && mx <= 740 + 187 && my >= 542 && my <= 542 + 39) {
-//                    System.out.println("MUSIC");
-//                }
-//                else
-//                if (mx >= 740 && mx <= 740 + 187 && my >= 594 && my <= 594 + 39) {
-//                    GameStates.state = GameStates.MENU;
-//                }
-//            }
-//        }
+
     }
     @Override
     public void keyPressed(KeyEvent e) {}
@@ -230,84 +161,70 @@ public class Play extends State implements Statemethods {
     public void keyReleased(KeyEvent e) {}
     @Override
     public void mousePressed(MouseEvent e) {
-//        if (paused)
-//            pauseOverPlay.mousePressed(e);
-//        else {
-//            if (isIn2(e, musicButton))
-//                musicButton.setMousePressed(true);
-//            else if (isIn2(e, soundButton))
-//                soundButton.setMousePressed(true);
-//            else if (isIn3(e, exit))
-//                exit.setMousePressed(true);
-//            else if (isIn3(e, unpause)) {
-//                unpause.setMousePressed(true);
-//                paused = true;
-//            }
-//        }
-        if (winner == 0 && !reset)
-        if (paused) {
-            Game.playSE(5);
-            pauseOverPlay.mousePressed(e);
-        }
-        else {
-            if (isIn5(e, musicButton)) {
+        if (winner == 0)
+            if (paused) {
                 Game.playSE(5);
-                musicButton.setMousePressed(true);
-            } else if (isIn2(e, soundButton)) {
-                Game.playSE(5);
-                soundButton.setMousePressed(true);
-            } else if (isIn3(e, exit)) {
-                Game.playSE(5);
-                exit.setMousePressed(true);
+                pauseOverPlay.mousePressed(e);
             }
-            else if (isIn3(e, unpause)) {
-                unpause.setMousePressed(true);
-                Game.playSE(5);
-                paused = true;
+            else {
+                if (isIn5(e, musicButton)) {
+                    Game.playSE(5);
+                    musicButton.setMousePressed(true);
+                } else if (isIn2(e, soundButton)) {
+                    Game.playSE(5);
+                    soundButton.setMousePressed(true);
+                } else if (isIn3(e, exit)) {
+                    Game.playSE(5);
+                    exit.setMousePressed(true);
+                }
+                else if (isIn3(e, unpause)) {
+                    unpause.setMousePressed(true);
+                    Game.playSE(5);
+                    paused = true;
+                }
             }
-        }
     }
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (winner == 0 && !reset)
-        if (paused)
-            pauseOverPlay.mouseReleased(e);
-        else {
-            if (isIn5(e, musicButton)) {
-                if (musicButton.isMousePressed()) {
-                    if (commandNum_music == 0) {
-                        Game.stopMusic();
-                        commandNum_music = 1;
+        if (winner == 0)
+            if (paused)
+                pauseOverPlay.mouseReleased(e);
+            else {
+                if (isIn5(e, musicButton)) {
+                    if (musicButton.isMousePressed()) {
+                        if (commandNum_music == 0) {
+                            Game.stopMusic();
+                            commandNum_music = 1;
+                        }
+                        else {
+                            Game.playMusic(0);
+                            commandNum_music = 0;
+                        }
+                        musicButton.setMuted(!musicButton.isMuted());
                     }
-                    else {
-                        Game.playMusic(0);
-                        commandNum_music = 0;
-                    }
-                    musicButton.setMuted(!musicButton.isMuted());
-                }
 
-            } else if (isIn2(e, soundButton)) {
-                if (commandNum_effect == 0)
-                    commandNum_effect = 1;
-                else
-                    commandNum_effect = 0;
-                if (soundButton.isMousePressed())
-                    soundButton.setMuted(!soundButton.isMuted());
-            } else if (isIn3(e, exit)) {
-                if (exit.isMousePressed()) {
-                    GameStates.state = GameStates.MENU;
-                    unpauseGame();
+                } else if (isIn2(e, soundButton)) {
+                    if (commandNum_effect == 0)
+                        commandNum_effect = 1;
+                    else
+                        commandNum_effect = 0;
+                    if (soundButton.isMousePressed())
+                        soundButton.setMuted(!soundButton.isMuted());
+                } else if (isIn3(e, exit)) {
+                    if (exit.isMousePressed()) {
+                        GameStates.state = GameStates.MENU;
+                        unpauseGame();
+                    }
+                } else if (isIn3(e, unpause)) {
+                    if (unpause.isMousePressed()) {
+                        unpauseGame();
+                    }
                 }
-            } else if (isIn3(e, unpause)) {
-                if (unpause.isMousePressed()) {
-                    unpauseGame();
-                }
+                musicButton.resetBools();
+                soundButton.resetBools();
+                exit.resetBools();
+                unpause.resetBools();
             }
-            musicButton.resetBools();
-            soundButton.resetBools();
-            exit.resetBools();
-            unpause.resetBools();
-        }
     }
     @Override
     public void mouseEntered(MouseEvent e) {}
@@ -315,25 +232,25 @@ public class Play extends State implements Statemethods {
     public void mouseExited(MouseEvent e) {}
     @Override
     public void mouseMoved(MouseEvent e) {
-        if (winner == 0 && !reset)
-        if (paused)
-            pauseOverPlay.mouseMoved(e);
-        else {
-            musicButton.setMouseOver(false);
-            soundButton.setMouseOver(false);
-            exit.setMouseOver(false);
-            unpause.setMouseOver(false);
+        if (winner == 0)
+            if (paused)
+                pauseOverPlay.mouseMoved(e);
+            else {
+                musicButton.setMouseOver(false);
+                soundButton.setMouseOver(false);
+                exit.setMouseOver(false);
+                unpause.setMouseOver(false);
 
-            if (isIn5(e, musicButton))
-                musicButton.setMouseOver(true);
-            else if (isIn2(e, soundButton))
-                soundButton.setMouseOver(true);
-            else if (isIn3(e, exit))
-                exit.setMouseOver(true);
-            else if (isIn3(e, unpause)) {
-                unpause.setMouseOver(true);
-            }
-       }
+                if (isIn5(e, musicButton))
+                    musicButton.setMouseOver(true);
+                else if (isIn2(e, soundButton))
+                    soundButton.setMouseOver(true);
+                else if (isIn3(e, exit))
+                    exit.setMouseOver(true);
+                else if (isIn3(e, unpause)) {
+                    unpause.setMouseOver(true);
+                }
+           }
     }
     public void unpauseGame() {
         paused = false;

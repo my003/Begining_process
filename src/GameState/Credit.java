@@ -1,22 +1,28 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Design the Credit state (add buttons and image and the team member's information)
+             following the concept of implement from Statemethod and extend from State
+*/
 package GameState;
 
 import Main.Game;
 import Main.GamePanel;
 import UI.CreditButton;
-import UI.MenuButton;
 
 import javax.swing.*;
-import javax.swing.text.Style;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 
 public class Credit extends State implements Statemethods{
     private CreditButton[] buttons = new CreditButton[1];
     private Image background,screen;
     private int menuX, menuY, menuWidth, menuHeight;
-
     private GamePanel gamePanel;
 
     public Credit (Game game){
@@ -56,8 +62,6 @@ public class Credit extends State implements Statemethods{
         for (CreditButton cb : buttons)
             cb.draw(g);
         // Name
-        //Style f = (Style) Font.getFont("ui/04B_30__.TTF");
-        //g.setFont(g.getFont().deriveFont(f.getAttributeCount(),16F));
         g.setFont(g.getFont().deriveFont(Font.ITALIC,16F));
         // PHUC
         String text0 = "DO DINH PHUC ITCSIU21219";
@@ -81,31 +85,23 @@ public class Credit extends State implements Statemethods{
         g.setColor(Color.BLACK);
         g.drawString(text3, x - 40, y + 200);
     }
-    public void mouseClicked(MouseEvent e){
-//        int mx = e.getX();
-//        int my = e.getY();
-//        if (GameStates.state == GameStates.CREDIT){
-//            if (mx >= 414 && mx <= 414 + 122 && my >= 462 && my <= 462 + 50) {
-//                GameStates.state = GameStates.MENU;
-//            }
-//        }
-    }
+    public void mouseClicked(MouseEvent e){}
     public void mousePressed(MouseEvent e){
         if (GameStates.state == GameStates.CREDIT)
             for (CreditButton cb: buttons)
-            if (isIn1(e,cb)) {
-                Game.playSE(5);
-                cb.setMousePressed(true);
-            }
+                if (isIn1(e,cb)) {
+                    Game.playSE(5);
+                    cb.setMousePressed(true);
+                }
     }
     public void mouseReleased(MouseEvent e){
         if (GameStates.state == GameStates.CREDIT)
             for (CreditButton cb: buttons)
-            if (isIn1(e,cb)) {
-                if (cb.isMousePressed())
-                    cb.applyGamestate();
-                break;
-            }
+                if (isIn1(e,cb)) {
+                    if (cb.isMousePressed())
+                        cb.applyGamestate();
+                    break;
+                }
         resetButtons();
     }
     public void mouseEntered(MouseEvent e) {}
@@ -113,7 +109,7 @@ public class Credit extends State implements Statemethods{
     private void resetButtons(){
         if (GameStates.state == GameStates.CREDIT)
             for (CreditButton cb: buttons)
-            cb.resetBools();
+                cb.resetBools();
     }
     public void mouseMoved(MouseEvent e){
         if (GameStates.state == GameStates.CREDIT) {
@@ -127,16 +123,8 @@ public class Credit extends State implements Statemethods{
                 }
         }
     }
-    public void keyPressed(KeyEvent e){
-//        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-//            GameStates.state = GameStates.MENU;
-//            bgYFloat = 0;
-//            setGamestate(Gamestate.MENU);
-    }
+    public void keyPressed(KeyEvent e){}
     public void keyReleased(KeyEvent e) {}
-//    public boolean isInc(MouseEvent e, CreditButton cb){
-//        return cb.getBounds().contains(e.getX(), e.getY());
-//    }
     public boolean isIn1(MouseEvent e, CreditButton cb){ return cb.getBounds().contains(e.getX(), e.getY()); }
 
 }

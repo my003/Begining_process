@@ -1,3 +1,13 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose:  According to Block's extension, bomb item disappears
+              when the player touches a bomb item and increasing item collection (rise the number of bomb can put).
+*/
 package Main;
 
 import java.awt.Graphics;

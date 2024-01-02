@@ -1,3 +1,12 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Set up the Mouse input for pressing buttons on each state.
+*/
 package Main;
 
 import GameState.GameStates;
@@ -9,14 +18,12 @@ import java.awt.event.MouseMotionListener;
 public class MouseInputs implements MouseListener, MouseMotionListener {
 
     private GamePanel gamePanel;
-
     public MouseInputs(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-    }
+    public void mouseDragged(MouseEvent e) {}
     @Override
     public void mouseMoved(MouseEvent e) {
         switch (GameStates.state) {
@@ -25,15 +32,8 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
             case CREDIT -> gamePanel.getGame().getCredit().mouseMoved(e);
         }
     }
-
-    @SuppressWarnings("incomplete-switch")
     @Override
-    public void mouseClicked(MouseEvent e) {
-//        switch (Gamestate.state) {
-//            case PLAYING -> gamePanel.getGame().getPlaying().mouseClicked(e);
-//        }
-    }
-
+    public void mouseClicked(MouseEvent e) {}
     @Override
     public void mousePressed(MouseEvent e) {
         switch (GameStates.state) {
@@ -50,15 +50,8 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
             case CREDIT -> gamePanel.getGame().getCredit().mouseReleased(e);
         }
     }
-
     @Override
-    public void mouseEntered(MouseEvent e) {
-        // Not In use
-    }
-
+    public void mouseEntered(MouseEvent e) {}
     @Override
-    public void mouseExited(MouseEvent e) {
-        // Not In use
-    }
-
+    public void mouseExited(MouseEvent e) {}
 }

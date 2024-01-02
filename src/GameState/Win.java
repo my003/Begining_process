@@ -1,21 +1,27 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Design the Win state (import image and add buttons)
+             following the concept of implement from Statemethod and extend from State
+*/
 package GameState;
 
 import Main.Game;
 import Main.GamePanel;
-import UI.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-import UI.WinButton;
 import UI.WinButton;
 
 public class Win extends State implements Statemethods{
     private WinButton menu, retry;
-    private Play play;
     private Image background,background1, background2;
     private int menuX, menuY, menuWidth, menuHeight;
     private GamePanel gamePanel;
@@ -49,8 +55,6 @@ public class Win extends State implements Statemethods{
     }
     @Override
     public void update() {
-//        for (WinButton mb : buttons)
-//            mb.update();
         menu.update();
         retry.update();
     }
@@ -60,8 +64,7 @@ public class Win extends State implements Statemethods{
             g.drawImage(background1, menuX, menuY, menuWidth, menuHeight, null);
         if (Play.winner == 2)
             g.drawImage(background2, menuX, menuY, menuWidth, menuHeight, null);
-//        for (WinButton mb : buttons)
-//            mb.draw(g);
+
         menu.draw(g);
         retry.draw(g);
     }
@@ -75,30 +78,21 @@ public class Win extends State implements Statemethods{
             }
             else
             if (mx >= 498 && mx <= 498 + 122 && my >= 462 && my <= 462 + 50) {
-                Play.reset = true;
                 System.out.println("Restart");
                 GameStates.state = GameStates.EXIT;
             }
         }
     }
     public void mousePressed(MouseEvent e){
-//        for (WinButton wb : buttons) {
-//            if (isIn4(e, wb)) {
-//                wb.setMousePressed(true);
-//                game.reset = true;
-//                Play.winner = 0;
-//            }
-//        }
         if (isIn(menu, e)){
             Game.playSE(5);
-            Play.reset = true;
             menu.setMousePressed(true);
-
-        } else if (isIn(retry, e)) {
+        }
+        else
+            if (isIn(retry, e)) {
             Game.playSE(5);
             retry.setMousePressed(true);
-            Play.reset = true;
-        }
+            }
         }
 
     @Override
@@ -122,20 +116,8 @@ public class Win extends State implements Statemethods{
 
         menu.resetBools();
         retry.resetBools();
-//        for (WinButton wb : buttons) {
-//            if (isIn4(e, wb)) {
-//                if (wb.isMousePressed())
-//                    wb.applyGamestate();
-//                break;
-//            }
-//        }
-//        resetButtons();
     }
 
-//    private void resetButtons(){
-//        for (WinButton mb: buttons)
-//            mb.resetBools();
-//    }
     public void mouseMoved(MouseEvent e){
         menu.setMouseOver(false);
         retry.setMouseOver(false);
@@ -145,14 +127,6 @@ public class Win extends State implements Statemethods{
         else if (isIn(retry, e))
             retry.setMouseOver(true);
     }
-
-//        for (WinButton mb : buttons)
-//            mb.setMouseOver(false);
-//        for (WinButton wb : buttons)
-//            if (isIn4(e, wb)) {
-//                wb.setMouseOver(true);
-//                break;
-//            }
     public void keyPressed(KeyEvent e){}
     public void keyReleased(KeyEvent e) {}
     public boolean isIn(WinButton wb, MouseEvent e){

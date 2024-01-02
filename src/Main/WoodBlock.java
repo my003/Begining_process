@@ -1,3 +1,13 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Following the concept of Block class, create the wood block's attributes and features
+             import image and set position.
+*/
 package Main;
 
 import java.awt.Graphics;
@@ -11,7 +21,7 @@ public class WoodBlock extends Block{
 
     public WoodBlock(int x, int y){
         super(x, y);
-        wood = new ImageIcon(this.getClass().getResource("Image/img.png")).getImage();
+        wood = new ImageIcon(this.getClass().getResource("Image/box.png")).getImage();
     }
 
     public void render(Graphics g){

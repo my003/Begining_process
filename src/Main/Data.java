@@ -1,7 +1,13 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose:
+*/
 package Main;
-
-import static GameState.Play.resetData;
-
 public class Data extends Subject{
 
     public Data(GamePanel gamePanel){
@@ -10,13 +16,6 @@ public class Data extends Subject{
     }
 
     public void addData() {
-        if (resetData){
-            fires.clear();
-            ices.clear();
-            items.clear();
-            explosions.clear();
-            resetData = false;
-        }
         for (Block fire: fires){
             fire.setData(this);
         }

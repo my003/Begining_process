@@ -1,12 +1,18 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose:
+*/
 package Main;
-
 
 import javax.swing.JFrame;
 
 public class GameWindow {
     private JFrame jframe;
-    public static final int WIDTHJF = 947 + 6;
-	public static final int HEIGHTJF = 675 + 29;
 
     public GameWindow(GamePanel gamePanel){
         jframe = new JFrame();
@@ -17,15 +23,4 @@ public class GameWindow {
         jframe.setLocationRelativeTo(null);
         jframe.setVisible(true);
     }
-//    @Override
-//    public void windowLostFocus(WindowEvent e) {
-//        gamePanel.getGame().windowFocusLost();
-//    }
-//
-//    @Override
-//    public void windowGainedFocus(WindowEvent e) {
-//        // TODO Auto-generated method stub
-//
-//    }
-//});
 }

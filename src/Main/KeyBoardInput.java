@@ -1,8 +1,16 @@
+/*
+    Name: 16 (BOM IT)
+    Member names & IU code:
+        ITCSIU21204 -  Nguyen Huynh Thao My
+        ITCSIU21219 -  Do Dinh Phuc
+        ITITWE20021 -  Nguyen Tran Nguyen Anh
+        ITCSIU21063 -  Le Thu Hoang
+    Purpose: Set up the Keyboard input for each player
+*/
 package Main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import static Main.Constant.*;
 
 public class KeyBoardInput implements KeyListener{
     private GamePanel gamepanel;
@@ -51,8 +59,7 @@ public class KeyBoardInput implements KeyListener{
                     gamepanel.getGame().getPlayer(playerNumber).setLeft(true);
                     break;
             }
-        }
-        else {
+        } else {
             switch (e.getKeyCode()){
                 case Constant.KeySetForPlayer2.UP:
                     gamepanel.getGame().getPlayer(playerNumber).setUp(true);
