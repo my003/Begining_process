@@ -38,13 +38,14 @@ Click here to see the demo game -->
 | |   |     
 | |  |      
 | All members    | Report, PowerPoint |
+
 Design Pattern:
 
 - MVC (Model-View-Controller) 
 - Observer 
 - State 
 - Template Method
-## Features <a name="features"></a> :star2:
+## Features <a name="features"></a> 
 **Main Feature:**  
 - Play, Pause
 - Sound 
@@ -52,30 +53,21 @@ Design Pattern:
 
 **Extra feature:**  
 - 
-- Game Speed, Set Difficulty
-- UI (Responsive)
+- Game Speed, MultiThread
+- UI 
 
-## UML Class Diagram <a name="uml"></a> 📄
+## UML Class Diagram <a name="uml"></a> 
 
-## Demo <a name="demo"></a>  🤖
+## Demo <a name="demo"></a>  
 
-#### Start Screen 
-
-#### Set Difficulty 
-
+#### Start Screen  
 
 #### Play Screen 
 
 #### Pause Screen 
 
-
 #### End Screen 
 
+### How to play
 
-#### Mobile 
-
-### How to play 🎮
-#### Desktop 🖥️
-
-
-## References <a name="references"></a> :book:
+## References <a name="references"></a> 
